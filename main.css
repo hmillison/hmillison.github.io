@@ -6,7 +6,10 @@ html {
 }
 
 body {
-  font-family: 'Crimson Text', serif;
+  font-family: 'Comic Sans MS', serif;
+  color: #1ABC9C;
+  background-image: url(background.jpg);
+  cursor: url(cursor.png), default;
 }
 
 a {
