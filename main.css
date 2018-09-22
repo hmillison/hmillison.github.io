@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  font-family: 'Comic Sans MS', serif;
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard', 'ChalkboardSE-Regular', sans-serif;
   color: #1ABC9C;
   background-image: url(background.jpg);
   cursor: url(cursor.png), default;
