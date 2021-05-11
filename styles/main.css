@@ -10,8 +10,8 @@ body {
 }
 
 a {
-  color:#1ABC9C;
-  text-decoration:none;
+  color: #1abc9c;
+  text-decoration: none;
 }
 
 .container {
@@ -19,7 +19,15 @@ a {
   margin: auto;
   display: flex;
   flex-direction: column;
-  vertical-align: middle; 
+  vertical-align: middle;
+}
+
+.navigation {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .easter-egg-toggle {

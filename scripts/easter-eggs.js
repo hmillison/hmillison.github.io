@@ -14,7 +14,9 @@ function getStylesheet() {
  */
 function toggleTheme() {
   const theme = getStylesheet();
-  const isDefaultThemeVisible = theme.getAttribute('href').includes(THEMES.main);
+  const isDefaultThemeVisible = theme
+    .getAttribute('href')
+    .includes(THEMES.main);
 
   if (isDefaultThemeVisible) {
     theme.setAttribute('href', THEMES.geocities);
