@@ -1,0 +1,39 @@
+html {
+    font-size: 1.5em;
+    line-height: 1.4;
+  }
+  
+  body {
+    font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard', 'ChalkboardSE-Regular', sans-serif;
+    color: #1ABC9C;
+    background-image: url(./assets/background.jpg);
+    cursor: url(./assets/cursor.png), default;
+  }
+  
+  a {
+    color:#1ABC9C;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+  }
+  
+  .container {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle; 
+  }
+  
+  .navigation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  @media only screen and (max-width: 350px) {
+    .navigation {
+      flex-direction: column;
+    }
+  }

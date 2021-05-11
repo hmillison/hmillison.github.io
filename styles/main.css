@@ -21,3 +21,7 @@ a {
   flex-direction: column;
   vertical-align: middle; 
 }
+
+.easter-egg-toggle {
+  font-size: 0.5em;
+}
