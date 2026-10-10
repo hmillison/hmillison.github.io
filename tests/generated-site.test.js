@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readdir, readFile} from 'node:fs/promises';
+import {join} from 'node:path';
 import test from 'node:test';
 
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+const cssFiles = await readdir(new URL('../dist/_astro/', import.meta.url));
+const css = (await Promise.all(cssFiles.filter((file) => file.endsWith('.css')).map((file) => readFile(join(new URL('../dist/_astro/', import.meta.url).pathname, file), 'utf8')))).join('\n');
 
 test('build emits the complete work history as static HTML', () => {
   assert.equal((html.match(/<article>/g) || []).length, 11);
@@ -31,6 +34,14 @@ test('visitor counter is in the footer instead of beside the introduction', () =
   const beforeFooter = html.slice(0, footerStart);
   assert.match(footer, /id="visit-count"/);
   assert.doesNotMatch(beforeFooter, /id="visit-count"/);
+});
+
+test('the build includes decorative tabby and tuxedo cats with reduced-motion support', () => {
+  assert.match(html, /class="site-cat site-cat--tabby"/);
+  assert.match(html, /class="site-cat site-cat--tuxedo"/);
+  assert.match(html, /aria-hidden="true"/);
+  assert.match(css, /prefers-reduced-motion/);
+  assert.match(css, /cat-float/);
 });
 
 test('the build is static and contains no client-side template placeholders', () => {

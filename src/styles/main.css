@@ -183,6 +183,67 @@ button {
   display: none;
 }
 
+.site-cats {
+  position: absolute;
+  right: clamp(1rem, 5vw, 4rem);
+  bottom: 1.4rem;
+  display: flex;
+  align-items: end;
+  gap: clamp(0.2rem, 1.5vw, 0.9rem);
+  pointer-events: none;
+}
+
+.site-cat {
+  width: clamp(5.5rem, 15vw, 9rem);
+  height: auto;
+  overflow: visible;
+  animation: cat-float 6s ease-in-out infinite;
+}
+
+.site-cat--tuxedo {
+  width: clamp(4.8rem, 13vw, 8rem);
+  animation-delay: -2.5s;
+}
+
+.cat-drawing {
+  fill: #aa783e;
+  stroke: #120c23;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+
+.site-cat--tuxedo .cat-drawing {
+  fill: #16162b;
+}
+
+.cat-outline {
+  fill: inherit;
+}
+
+.cat-stripe,
+.cat-face,
+.cat-whisker,
+.cat-tail {
+  fill: none;
+}
+
+.cat-stripe {
+  stroke: #5c382b;
+  stroke-width: 5;
+}
+
+.site-cat--tuxedo .cat-white {
+  fill: #f7f1dc;
+  stroke: #120c23;
+  stroke-width: 3;
+}
+
+@keyframes cat-float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-7px) rotate(1deg); }
+}
+
 .hero {
   position: relative;
   padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 6vw, 5rem);
@@ -744,6 +805,12 @@ html[data-theme='plain'] .technology-list li {
 
   .theme-toggle {
     justify-self: end;
+  }
+
+  .site-cats {
+    position: static;
+    justify-content: flex-end;
+    margin: 0 0 1rem;
   }
 
   .counter-panel {
