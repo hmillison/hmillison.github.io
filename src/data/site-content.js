@@ -8,7 +8,6 @@ const siteContent = {
     name: 'Henry Millison',
     firstName: 'Henry',
     lastName: 'Millison',
-    command: 'henry@new-york:~$ whoami',
     headline: 'Hello! My name is Henry!',
     introduction:
       'I’m a software engineering consultant in the greatest city in the world, New York, working with businesses of all shapes and sizes to solve their problems with technology.',
@@ -35,8 +34,13 @@ const siteContent = {
     items: [
       {
         title: 'Citadel Securities Research Platform',
+        period: 'July 2023 – July 2025',
+        summary: 'Led UI development for a quantitative research platform.',
+      },
+      {
+        title: 'Citadel Securities',
         period: 'Present',
-        summary: 'Leading UI development for a quantitative research platform. Covered by NDA.',
+        summary: 'Building a next generation global systematic trading platform.',
       },
       {
         title: 'CreditSights Mobile App Rebuild',

@@ -5,8 +5,13 @@ import test from 'node:test';
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 
 test('build emits the complete work history as static HTML', () => {
-  assert.equal((html.match(/<article>/g) || []).length, 10);
-  assert.match(html, /Citadel Securities Research Platform/);
+  assert.equal((html.match(/<article>/g) || []).length, 11);
+  assert.equal((html.match(/Citadel Securities/g) || []).length, 2);
+  assert.match(html, /July 2023/);
+  assert.match(html, /July 2025/);
+  assert.match(html, /Building a next generation global systematic trading platform/);
+  assert.doesNotMatch(html, /Covered by NDA/i);
+  assert.doesNotMatch(html, /whoami/);
   assert.match(html, /Landscape by Sprout Social/);
   assert.match(html, /Fall 2023/);
 });
