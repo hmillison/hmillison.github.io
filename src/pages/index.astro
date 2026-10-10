@@ -35,12 +35,6 @@ const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
             <span class="construction-blink" aria-hidden="true">{SITE_CONTENT.homepageExtras.constructionBadge}</span>
             {SITE_CONTENT.identity.note}
           </p>
-          <aside class="counter-panel" aria-label={SITE_CONTENT.homepageExtras.visitorTitle}>
-            <h2>{SITE_CONTENT.homepageExtras.visitorTitle}</h2>
-            <p>{SITE_CONTENT.homepageExtras.visitorIntro}</p>
-            <output id="visit-count" class="counter" aria-label="Visits from this browser">000001</output>
-            <p class="counter-disclaimer">{SITE_CONTENT.homepageExtras.visitorDisclaimer}</p>
-          </aside>
         </div>
         <ul class="hero-links">
           {SITE_CONTENT.links.map((link) => (
@@ -144,6 +138,12 @@ const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
       <p>© <span id="footer-year"></span> {SITE_CONTENT.identity.name}. {SITE_CONTENT.footer.legal || ''}</p>
       <p>{SITE_CONTENT.footer.disclaimer || ''}</p>
       <a href="#top">Back to top ↑</a>
+      <aside class="counter-panel footer-counter" aria-label={SITE_CONTENT.homepageExtras.visitorTitle}>
+        <h2>{SITE_CONTENT.homepageExtras.visitorTitle}</h2>
+        <p>{SITE_CONTENT.homepageExtras.visitorIntro}</p>
+        <output id="visit-count" class="counter" aria-label="Visits from this browser">000001</output>
+        <p class="counter-disclaimer">{SITE_CONTENT.homepageExtras.visitorDisclaimer}</p>
+      </aside>
     </footer>
   </div>
   <script src="../scripts/easter-eggs.js"></script>

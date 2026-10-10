@@ -12,6 +12,7 @@ test('build emits the complete work history as static HTML', () => {
   assert.match(html, /Building a next generation global systematic trading platform/);
   assert.doesNotMatch(html, /Covered by NDA/i);
   assert.doesNotMatch(html, /whoami/);
+  assert.match(html, /href="https:\/\/newsroom\.reportablenews\.com\/pr\/reportable-launches-reportabot-an-ai-powered-tool-to-generate-news-releases-in-under-60-seconds"/);
   assert.match(html, /Landscape by Sprout Social/);
   assert.match(html, /Fall 2023/);
 });
@@ -20,6 +21,15 @@ test('personal counter and playful construction notice are rendered', () => {
   assert.match(html, /under construction forever/i);
   assert.match(html, /Visitor counter/);
   assert.match(html, /id="visit-count"/);
+});
+
+test('visitor counter is in the footer instead of beside the introduction', () => {
+  const footerStart = html.indexOf('<footer>');
+  const footerEnd = html.indexOf('</footer>', footerStart);
+  const footer = html.slice(footerStart, footerEnd);
+  const beforeFooter = html.slice(0, footerStart);
+  assert.match(footer, /id="visit-count"/);
+  assert.doesNotMatch(beforeFooter, /id="visit-count"/);
 });
 
 test('the build is static and contains no client-side template placeholders', () => {

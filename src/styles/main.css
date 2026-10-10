@@ -220,10 +220,6 @@ button {
 }
 
 .homepage-notices {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(12rem, 15rem);
-  align-items: center;
-  gap: 1rem;
   max-width: 760px;
   margin-top: 1.2rem;
 }
@@ -262,6 +258,15 @@ button {
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.footer-counter {
+  width: min(100%, 15rem);
+  margin-left: auto;
+}
+
+footer .counter-panel h2 {
+  color: var(--cyan);
 }
 
 .counter-panel p {
@@ -741,10 +746,6 @@ html[data-theme='plain'] .technology-list li {
     justify-self: end;
   }
 
-  .homepage-notices {
-    grid-template-columns: 1fr;
-  }
-
   .counter-panel {
     width: min(100%, 18rem);
   }
@@ -789,9 +790,6 @@ html[data-theme='plain'] .technology-list li {
     right: 0.65rem;
   }
 
-  .command {
-    max-width: calc(100% - 50px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

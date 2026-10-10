@@ -59,7 +59,7 @@ const siteContent = {
       {
         title: 'Reportabot by Reportable',
         period: 'April 2023',
-        href: 'https://reportable.co/reportabot/',
+        href: 'https://newsroom.reportablenews.com/pr/reportable-launches-reportabot-an-ai-powered-tool-to-generate-news-releases-in-under-60-seconds',
         external: true,
         summary: 'Built a ChatGPT integration that lets Reportable users generate press releases.',
       },
