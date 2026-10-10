@@ -788,6 +788,65 @@ html[data-theme='plain'] .technology-list li {
   background: var(--panel);
 }
 
+.recipe-index {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.recipe-index-header {
+  margin-bottom: 1.5rem;
+  padding: clamp(1.4rem, 4vw, 3rem);
+  border: 1px dashed var(--cyan);
+  background: var(--panel-deep);
+}
+
+.recipe-index-header h1 {
+  margin: 0;
+  color: var(--yellow);
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 7vw, 5.4rem);
+  line-height: 0.98;
+}
+
+.recipe-index-header p {
+  margin: 1rem 0 0;
+  color: var(--muted);
+}
+
+.recipe-index-list {
+  border-top: 1px dashed var(--cyan);
+}
+
+.recipe-index-entry {
+  padding: 1.25rem 0;
+  border-bottom: 1px dashed var(--cyan);
+}
+
+.recipe-index-entry h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.recipe-index-entry p {
+  max-width: 65ch;
+  margin: 0.55rem 0;
+}
+
+.recipe-read-link {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+html[data-theme='plain'] .recipe-index-header {
+  background: #f1eee5;
+  color: #171717;
+}
+
+html[data-theme='plain'] .recipe-index-header h1 {
+  color: #171717;
+}
+
 .recipe-stamp {
   justify-self: end;
   padding: 0.25rem 0.45rem;
@@ -811,14 +870,6 @@ html[data-theme='plain'] .technology-list li {
   padding: clamp(1.4rem, 4vw, 3rem);
   border: 1px dashed var(--cyan);
   background: var(--panel-deep);
-}
-
-.recipe-kicker {
-  margin: 0 0 0.7rem;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
 }
 
 .recipe-header h1 {

@@ -2,11 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SITE_CONTENT from '../data/site-content.js';
 
-const collectionKeys = ['notes', 'recipes'] as const;
+const collectionKeys = ['notes'] as const;
 const collections = collectionKeys
   .map((key) => SITE_CONTENT[key])
   .filter((section) => section.items.length > 0 || section.emptyMessage);
-const navSections = [SITE_CONTENT.work, SITE_CONTENT.about, ...collections, SITE_CONTENT.contact];
+const navSections = [
+  {label: SITE_CONTENT.work.navLabel, href: `#${SITE_CONTENT.work.id}`},
+  {label: SITE_CONTENT.about.navLabel, href: `#${SITE_CONTENT.about.id}`},
+  {label: SITE_CONTENT.recipes.navLabel, href: '/recipes'},
+  ...collections.map((section) => ({label: section.navLabel, href: `#${section.id}`})),
+  {label: SITE_CONTENT.contact.navLabel, href: `#${SITE_CONTENT.contact.id}`},
+];
 const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
 ---
 <BaseLayout>
@@ -17,7 +23,7 @@ const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
         <span>{SITE_CONTENT.identity.lastName}</span>
       </a>
       <nav aria-label="Primary navigation">
-        {navSections.map((section) => <a href={`#${section.id}`}>{section.navLabel}</a>)}
+        {navSections.map((section) => <a href={section.href}>{section.label}</a>)}
       </nav>
       <button class="theme-toggle" type="button" aria-pressed="false">
         <span class="weird-label">Plain version</span>
