@@ -2,44 +2,34 @@ const root = document.documentElement;
 const themeToggle = document.querySelector('.theme-toggle');
 const nycTime = document.querySelector('#nyc-time');
 const footerYear = document.querySelector('#footer-year');
-const visitCount = document.querySelector('#visit-count');
 const signButton = document.querySelector('.street-sign');
 const mainSign = document.querySelector('.street-sign-main');
 const crossSign = document.querySelector('.street-sign-cross');
-const welcomeMessage = document.querySelector('.welcome-message');
 const sparkButton = document.querySelector('.spark-button');
 const sparkLayer = document.querySelector('.spark-layer');
 
-const signs = [
+const signs = window.SITE_CONTENT?.streetSigns?.intersections || [
   ['HENRY ST', 'COMIC SANS WAY'],
-  ['MILLISON AV', 'PAPYRUS PLAZA'],
-  ['HCI BLVD', 'VIEW SOURCE LN'],
-  ['QUEENS', 'THE GREATEST CITY'],
-];
-
-const greetings = [
-  'Welcome, internet traveler.',
-  'Thank you for visiting my web site.',
-  'This page is optimized for human beings.',
-  'Please excuse the digital dust.',
-  'You are now entering the technology zone.',
 ];
 
 let signIndex = 0;
-let greetingIndex = 0;
 
 function setTheme(theme) {
-  const nextTheme = theme === 'boring' ? 'boring' : 'oldweb';
+  const nextTheme = theme === 'plain' ? 'plain' : 'weird';
   root.dataset.theme = nextTheme;
   localStorage.setItem('henry-theme', nextTheme);
-  themeToggle?.setAttribute('aria-pressed', String(nextTheme === 'boring'));
+  themeToggle?.setAttribute('aria-pressed', String(nextTheme === 'plain'));
 
-  const color = nextTheme === 'boring' ? '#f4f1e8' : '#000000';
+  if (nextTheme === 'plain') {
+    sparkLayer?.replaceChildren();
+  }
+
+  const color = nextTheme === 'plain' ? '#f4f1e8' : '#0000a8';
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', color);
 }
 
 function toggleTheme() {
-  setTheme(root.dataset.theme === 'oldweb' ? 'boring' : 'oldweb');
+  setTheme(root.dataset.theme === 'weird' ? 'plain' : 'weird');
 }
 
 function updateClock() {
@@ -54,15 +44,6 @@ function updateClock() {
   }).format(new Date());
 }
 
-function updateVisitCount() {
-  if (!visitCount) return;
-
-  const prior = Number.parseInt(localStorage.getItem('henry-visits') || '0', 10);
-  const visits = Number.isFinite(prior) ? prior + 1 : 1;
-  localStorage.setItem('henry-visits', String(visits));
-  visitCount.textContent = String(visits).padStart(6, '0');
-}
-
 function rotateSign() {
   signIndex = (signIndex + 1) % signs.length;
   const [main, cross] = signs[signIndex];
@@ -70,15 +51,8 @@ function rotateSign() {
   crossSign.textContent = cross;
 }
 
-function rotateGreeting() {
-  if (!welcomeMessage) return;
-
-  greetingIndex = (greetingIndex + 1) % greetings.length;
-  welcomeMessage.textContent = greetings[greetingIndex];
-}
-
 function addSpark(x, y) {
-  if (!sparkLayer || root.dataset.theme === 'boring') return;
+  if (!sparkLayer || root.dataset.theme === 'plain') return;
 
   const spark = document.createElement('span');
   spark.className = 'click-spark';
@@ -101,21 +75,19 @@ sparkButton?.addEventListener('click', event => {
       );
     }, index * 50);
   }
-  rotateGreeting();
 });
 
 document.addEventListener('keydown', event => {
   const target = event.target;
   const isTyping = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement;
 
-  if (!isTyping && event.key.toLowerCase() === 'b') {
+  if (!isTyping && event.key.toLowerCase() === 'p') {
     toggleTheme();
   }
 });
 
 setTheme(root.dataset.theme);
 updateClock();
-updateVisitCount();
 setInterval(updateClock, 30_000);
 
 if (footerYear) {

@@ -1,200 +1,39 @@
 <!doctype html>
-<html lang="en" data-theme="oldweb">
+<html lang="en" data-theme="weird">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Henry Millison's personal homepage: software, interfaces, New York, and questionable municipal typography."
+      content="Henry Millison's personal homepage: software, interfaces, New York, recipes, notes, and questionable municipal typography."
     />
-    <meta name="theme-color" content="#000000" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000000'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='serif' font-size='48' fill='%2300ffff'%3E★%3C/text%3E%3C/svg%3E" />
-    <title>Henry's Home Page on the World Wide Web</title>
+    <meta name="theme-color" content="#0000a8" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230000a8'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='serif' font-size='48' fill='%2300ffff'%3E★%3C/text%3E%3C/svg%3E" />
+    <title>Henry Millison — Personal Homepage</title>
     <link rel="stylesheet" href="./styles/main.css" />
     <script>
       const savedTheme = localStorage.getItem('henry-theme');
-      document.documentElement.dataset.theme = savedTheme === 'boring' ? 'boring' : 'oldweb';
+      document.documentElement.dataset.theme = savedTheme === 'plain' ? 'plain' : 'weird';
     </script>
   </head>
 
   <body>
-    <a class="skip-link" href="#main">Skip the internet debris</a>
-
-    <div class="outer-frame">
-      <div class="browser-strip" aria-hidden="true">
-        <span>LOCATION:</span>
-        <span class="fake-address">http://www.henrymillison.com/~henry/index.html</span>
-        <span class="connected">● CONNECTED</span>
-      </div>
-
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee-track">
-          ★ WELCOME TO HENRY'S HOME PAGE ★ PROUDLY HAND-CODED IN NEW YORK ★ BEST VIEWED WITH CURIOSITY ★
-          WELCOME TO HENRY'S HOME PAGE ★ PROUDLY HAND-CODED IN NEW YORK ★ BEST VIEWED WITH CURIOSITY ★
-        </div>
-      </div>
-
-      <header class="masthead" id="top">
-        <button class="spark-button" type="button" title="Add more stars" aria-label="Add more stars"></button>
-        <p class="kicker">You have reached the personal homepage of</p>
-        <h1>
-          <span>HENRY</span>
-          <span>MILLISON</span>
-        </h1>
-        <p class="subtitle">software engineer / design person / new yorker</p>
-        <div class="rainbow-rule" aria-hidden="true"></div>
-        <p class="welcome-message" aria-live="polite">Welcome, internet traveler.</p>
-      </header>
-
-      <nav class="button-bar" aria-label="Page sections">
-        <a href="#about">[ ABOUT ME ]</a>
-        <a href="#work">[ WORK STUFF ]</a>
-        <a href="#links">[ LINKS ]</a>
-        <a href="#contact">[ EMAIL ME ]</a>
-        <button class="theme-toggle" type="button" aria-pressed="false">
-          <span class="oldweb-label">[ BORING MODE ]</span>
-          <span class="boring-label">[ FUN MODE ]</span>
-        </button>
-      </nav>
-
-      <main id="main" class="homepage-grid">
-        <aside class="sidebar" aria-label="Homepage miscellany">
-          <section class="panel webmaster-card">
-            <h2>THE WEBMASTER</h2>
-            <div class="portrait" aria-hidden="true">
-              <span class="portrait-star">★</span>
-              <strong>HM</strong>
-              <span class="portrait-orbit"></span>
-            </div>
-            <p><strong>NAME:</strong> Henry</p>
-            <p><strong>LOCATION:</strong> The greatest city in the world</p>
-            <p><strong>LOCAL TIME:</strong> <time id="nyc-time">Eastern Time</time></p>
-            <p><strong>STATUS:</strong> <span class="online">ONLINE</span></p>
-          </section>
-
-          <section class="panel counter-panel">
-            <h2>VISITOR COUNTER</h2>
-            <p>You are visitor from this browser:</p>
-            <output id="visit-count" class="counter" aria-label="Visits from this browser">000001</output>
-            <p class="tiny">This number is real, local, and statistically meaningless.</p>
-          </section>
-
-          <section class="panel badges" aria-label="Internet badges">
-            <h2>COOL BUTTONS</h2>
-            <div class="badge badge-html"><span>HTML</span><strong>HAND<br />CODED</strong></div>
-            <div class="badge badge-nyc"><span>NYC</span><strong>ONLINE</strong></div>
-            <div class="badge badge-view"><span>VIEW</span><strong>SOURCE</strong></div>
-            <div class="badge badge-human"><span>100%</span><strong>PERSONAL<br />HOMEPAGE</strong></div>
-          </section>
-
-          <section class="panel updates">
-            <h2>SITE NEWS</h2>
-            <ul>
-              <li>The weird theme won.</li>
-              <li>The normal theme is now optional.</li>
-              <li>Still no guestbook. Email works.</li>
-            </ul>
-          </section>
-        </aside>
-
-        <div class="main-column">
-          <section class="panel intro-panel" id="about">
-            <div class="panel-title">WELCOME TO MY CORNER OF THE INTERNET</div>
-            <p class="dropcap">
-              Hello! My name is <strong>Henry</strong>. I’m a software engineer living in New York,
-              working with businesses of all shapes and sizes to solve their problems with technology.
-            </p>
-            <p>
-              I like the part where design and development overlap: making complicated systems
-              understandable, useful, and maybe even pleasant. My academic background is in Human–Computer
-              Interaction and Computer Science, which means I have opinions about both the interface and
-              the code underneath it.
-            </p>
-            <p class="important-note">
-              <span class="blink" aria-hidden="true">NEW!</span>
-              This site is intentionally under construction forever.
-            </p>
-          </section>
-
-          <section class="panel work-panel" id="work">
-            <div class="panel-title">THINGS I HAVE BUILT FOR MONEY</div>
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">AREA</th>
-                  <th scope="col">WHAT HAPPENED</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Distributed systems</td>
-                  <td>High-performance interfaces for monitoring systems at scale.</td>
-                </tr>
-                <tr>
-                  <td>Financial software</td>
-                  <td>Anti-money-laundering applications for investment banks.</td>
-                </tr>
-                <tr>
-                  <td>Planning tools</td>
-                  <td>Social campaign software for some of the world’s biggest brands.</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-
-          <section class="panel tool-panel">
-            <div class="panel-title">THE TECHNOLOGY ZONE</div>
-            <p>
-              I specialize in <strong>React</strong>, <strong>Vue</strong>, and
-              <strong>TypeScript</strong>, plus the surrounding front-end ecosystem.
-              I also work across the stack when that is what getting the job done requires.
-            </p>
-            <div class="tech-cloud">
-              <span>REACT</span><span>VUE</span><span>TYPESCRIPT</span><span>HCI</span>
-              <span>DESIGN SYSTEMS</span><span>THE WEB</span><span>VIEW SOURCE</span>
-            </div>
-          </section>
-
-          <section class="panel sign-panel">
-            <div class="panel-title">HENRY'S MUNICIPAL TYPOGRAPHY WATCH</div>
-            <p>Click the signs to tour several fictional intersections.</p>
-            <button class="street-sign" type="button" title="Change the intersection">
-              <span class="street-sign-main">HENRY ST</span>
-              <span class="street-sign-cross">COMIC SANS WAY</span>
-            </button>
-            <p class="tiny">If your street sign uses Comic Sans or Papyrus, I would genuinely like to see it.</p>
-          </section>
-
-          <section class="panel link-panel" id="links">
-            <div class="panel-title">MY LINKS</div>
-            <ul class="link-list">
-              <li><a href="https://github.com/hmillison" target="_blank" rel="noopener noreferrer">GitHub</a> — code, experiments, and evidence</li>
-              <li><a href="https://www.linkedin.com/in/hmillison/" target="_blank" rel="noopener noreferrer">LinkedIn</a> — the professional version of this page</li>
-              <li><a href="mailto:me@henrymillison.com">Email</a> — still the best protocol</li>
-            </ul>
-          </section>
-
-          <section class="panel contact-panel" id="contact">
-            <div class="panel-title">SIGN MY GUESTBOOK*</div>
-            <p>
-              Want to talk about technology, design, New York, or a badly typeset street sign?
-              <a class="email-button" href="mailto:me@henrymillison.com">SEND ELECTRONIC MAIL</a>
-            </p>
-            <p class="tiny">*There is no database. This opens your email client, as nature intended.</p>
-          </section>
-        </div>
-      </main>
-
-      <footer>
-        <div class="construction" aria-hidden="true">⚠ UNDER CONSTRUCTION ⚠ UNDER CONSTRUCTION ⚠</div>
-        <p>Copyright <span id="footer-year"></span> Henry Millison. All wrongs reserved.</p>
-        <p>Made with HTML, CSS, JavaScript, and an unreasonable number of borders.</p>
-        <p class="tiny">No cookies. No tracking. No inspirational newsletter.</p>
-        <a href="#top">↑ BACK TO THE TOP ↑</a>
-      </footer>
-    </div>
-
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="spark-layer" aria-hidden="true"></div>
+    <div id="site-root"></div>
+
+    <noscript>
+      <main class="no-script">
+        <h1>Henry Millison</h1>
+        <p>This hand-coded homepage needs JavaScript to assemble its content.</p>
+        <p><a href="mailto:me@henrymillison.com">Email Henry</a></p>
+      </main>
+    </noscript>
+
+    <script src="./content/site-content.js"></script>
+    <script src="./scripts/render-site.js"></script>
+    <script src="./scripts/starfield.js"></script>
     <script src="./scripts/easter-eggs.js"></script>
   </body>
 </html>
