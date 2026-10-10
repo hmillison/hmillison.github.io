@@ -119,9 +119,9 @@ button {
 .site-shell {
   width: min(94%, 980px);
   margin: 1.5rem auto 3rem;
-  border: 2px solid var(--cyan);
+  border: 1px solid var(--cyan);
   background: #00005d;
-  box-shadow: 7px 7px 0 var(--pink);
+  box-shadow: 4px 4px 0 var(--pink);
 }
 
 .site-header {
@@ -131,7 +131,7 @@ button {
   align-items: center;
   min-height: 5rem;
   padding: 0.8rem 1rem;
-  border-bottom: 2px solid var(--cyan);
+  border-bottom: 1px solid var(--cyan);
   background: #000047;
 }
 
@@ -190,134 +190,6 @@ button {
   background: var(--panel);
 }
 
-.hero-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 16rem;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-}
-
-.status-card {
-  overflow: hidden;
-  border: 3px ridge #d6d6d6;
-  background: #000038;
-  box-shadow: 4px 4px 0 #000;
-  font-family: var(--mono);
-}
-
-.status-title {
-  padding: 0.3rem 0.5rem;
-  border-bottom: 2px ridge #d6d6d6;
-  background: #740074;
-  color: var(--yellow);
-  font-size: 0.72rem;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.status-monogram {
-  display: grid;
-  place-items: center;
-  width: 5.5rem;
-  height: 5.5rem;
-  margin: 1rem auto;
-  border: 3px double var(--cyan);
-  background: #000;
-  color: var(--yellow);
-  font-family: var(--display);
-  font-size: 2.3rem;
-  transform: rotate(-2deg);
-}
-
-.status-card dl {
-  margin: 0;
-  padding: 0 0.75rem;
-}
-
-.status-card dl div {
-  padding: 0.45rem 0;
-  border-top: 1px dotted var(--cyan);
-}
-
-.status-card dt {
-  color: var(--muted);
-  font-size: 0.6rem;
-  text-transform: uppercase;
-}
-
-.status-card dd {
-  margin: 0.1rem 0 0;
-  color: #fff;
-  font-size: 0.72rem;
-}
-
-.status-card .online {
-  color: #61ff8a;
-  font-weight: bold;
-}
-
-#visit-count {
-  display: inline-block;
-  padding: 0.1rem 0.25rem;
-  border: 2px inset #aaa;
-  background: #000;
-  color: #61ff8a;
-  letter-spacing: 0.1em;
-}
-
-.construction-note {
-  margin: 0.75rem;
-  padding: 0.35rem;
-  border: 1px dashed var(--yellow);
-  color: var(--yellow);
-  font-size: 0.62rem;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.mini-badges {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.35rem;
-  padding: 0 0.65rem 0.75rem;
-}
-
-.mini-badge {
-  display: grid;
-  grid-template-columns: 29px 1fr;
-  width: 88px;
-  height: 31px;
-  overflow: hidden;
-  border: 1px solid #fff;
-  background: #000;
-  color: #fff;
-  font: 7px/1 Arial, sans-serif;
-  text-align: center;
-}
-
-.mini-badge small,
-.mini-badge strong {
-  display: grid;
-  place-items: center;
-}
-
-.mini-badge small {
-  background: #8b005f;
-  color: #fff;
-  font-size: 7px;
-  font-weight: bold;
-}
-
-.mini-badge strong {
-  color: var(--yellow);
-  font-size: 7px;
-}
-
-.mini-badge-nyc small { background: #005533; }
-.mini-badge-source small { background: #00328f; }
-
 .command,
 .section-header > p,
 .contact-kicker,
@@ -339,11 +211,11 @@ button {
   margin: 0;
   color: var(--yellow);
   font-family: var(--display);
-  font-size: clamp(3.4rem, 9vw, 7rem);
-  line-height: 0.92;
+  font-size: clamp(3.4rem, 8vw, 6.25rem);
+  line-height: 0.96;
   letter-spacing: -0.045em;
   text-shadow: none;
-  transform: rotate(-1deg);
+  transform: rotate(-0.5deg);
 }
 
 .hero-copy {
@@ -747,37 +619,6 @@ html[data-theme='plain'] .hero-links a {
   color: #0645ad;
 }
 
-html[data-theme='plain'] .status-card {
-  border: 1px solid #888;
-  background: #fff;
-  box-shadow: none;
-}
-
-html[data-theme='plain'] .status-title,
-html[data-theme='plain'] .status-monogram {
-  border-color: #888;
-  background: #eee;
-  color: #171717;
-  transform: none;
-}
-
-html[data-theme='plain'] .status-card dd,
-html[data-theme='plain'] .construction-note {
-  color: #171717;
-}
-
-html[data-theme='plain'] .status-card .online {
-  color: #166534;
-}
-
-html[data-theme='plain'] .construction-note {
-  border-color: #888;
-}
-
-html[data-theme='plain'] .mini-badge strong {
-  color: #fff;
-}
-
 html[data-theme='plain'] .work-list article:hover,
 html[data-theme='plain'] .sign-corner {
   background: #f5f5f5;
@@ -814,13 +655,8 @@ html[data-theme='plain'] .technology-list li {
   .work-section,
   .about-section,
   .collection-section,
-  .contact-section,
-  .hero-layout {
+  .contact-section {
     grid-template-columns: 1fr;
-  }
-
-  .status-card {
-    width: min(100%, 24rem);
   }
 
   .work-section > .section-header,

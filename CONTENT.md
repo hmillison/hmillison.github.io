@@ -8,10 +8,6 @@ content/site-content.js
 
 `index.html` is only the page shell. Navigation and sections are generated automatically.
 
-## Edit the webmaster card
-
-Change `status` in `content/site-content.js`. Its labels, location, construction note, and three 88×31 badges are all content-driven. The local time and honest per-browser visit count are filled in by JavaScript.
-
 ## Add a work item
 
 Add an object to `work.items`:

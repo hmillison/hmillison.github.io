@@ -1,8 +1,7 @@
 const root = document.documentElement;
 const themeToggle = document.querySelector('.theme-toggle');
-const nycTimes = document.querySelectorAll('.nyc-time');
+const nycTime = document.querySelector('#nyc-time');
 const footerYear = document.querySelector('#footer-year');
-const visitCount = document.querySelector('#visit-count');
 const signButton = document.querySelector('.street-sign');
 const mainSign = document.querySelector('.street-sign-main');
 const crossSign = document.querySelector('.street-sign-cross');
@@ -34,29 +33,15 @@ function toggleTheme() {
 }
 
 function updateClock() {
-  if (nycTimes.length === 0) return;
+  if (!nycTime) return;
 
-  const now = new Date();
-  const label = new Intl.DateTimeFormat('en-US', {
+  nycTime.dateTime = new Date().toISOString();
+  nycTime.textContent = new Intl.DateTimeFormat('en-US', {
     timeZone: 'America/New_York',
     hour: 'numeric',
     minute: '2-digit',
     timeZoneName: 'short',
-  }).format(now);
-
-  nycTimes.forEach(element => {
-    element.dateTime = now.toISOString();
-    element.textContent = label;
-  });
-}
-
-function updateVisitCount() {
-  if (!visitCount) return;
-
-  const prior = Number.parseInt(localStorage.getItem('henry-visits') || '0', 10);
-  const visits = Number.isFinite(prior) ? prior + 1 : 1;
-  localStorage.setItem('henry-visits', String(visits));
-  visitCount.textContent = String(visits).padStart(6, '0');
+  }).format(new Date());
 }
 
 function rotateSign() {
@@ -103,7 +88,6 @@ document.addEventListener('keydown', event => {
 
 setTheme(root.dataset.theme);
 updateClock();
-updateVisitCount();
 setInterval(updateClock, 30_000);
 
 if (footerYear) {

@@ -21,22 +21,6 @@ window.SITE_CONTENT = {
     {label: 'LinkedIn', href: 'https://www.linkedin.com/in/hmillison/', external: true},
   ],
 
-  status: {
-    label: 'Webmaster status',
-    initials: 'HM',
-    locationLabel: 'Location',
-    location: 'New York, NY',
-    stateLabel: 'Status',
-    state: 'ONLINE',
-    visitsLabel: 'Visits from this browser',
-    construction: 'Always under construction',
-    badges: [
-      {small: 'HTML', large: 'HAND CODED', className: 'html'},
-      {small: 'NYC', large: 'ONLINE', className: 'nyc'},
-      {small: 'VIEW', large: 'SOURCE', className: 'source'},
-    ],
-  },
-
   work: {
     id: 'work',
     navLabel: 'Work',
