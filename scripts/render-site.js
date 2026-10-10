@@ -78,6 +78,16 @@
     )
     .join('');
 
+  const statusBadges = content.status.badges
+    .map(
+      badge => `
+        <span class="mini-badge mini-badge-${escapeHtml(badge.className)}">
+          <small>${escapeHtml(badge.small)}</small>
+          <strong>${escapeHtml(badge.large)}</strong>
+        </span>`,
+    )
+    .join('');
+
   const workItems = content.work.items.map(renderEntry).join('');
   const aboutParagraphs = content.about.paragraphs
     .map(paragraph => `<p>${escapeHtml(paragraph)}</p>`)
@@ -105,11 +115,28 @@
       <main id="main">
         <section class="hero" aria-labelledby="hero-title">
           <button class="spark-button" type="button" title="Add stars" aria-label="Add stars"></button>
-          <p class="command"><span>${escapeHtml(content.identity.command.split(':')[0])}</span>:${escapeHtml(content.identity.command.split(':').slice(1).join(':'))}</p>
-          <h1 id="hero-title">${escapeHtml(content.identity.headline)}</h1>
-          <p class="hero-copy">${escapeHtml(content.identity.introduction)}</p>
-          <p class="hero-note">${escapeHtml(content.identity.note)}</p>
-          <ul class="hero-links">${heroLinks}</ul>
+          <div class="hero-layout">
+            <div class="hero-main">
+              <p class="command"><span>${escapeHtml(content.identity.command.split(':')[0])}</span>:${escapeHtml(content.identity.command.split(':').slice(1).join(':'))}</p>
+              <h1 id="hero-title">${escapeHtml(content.identity.headline)}</h1>
+              <p class="hero-copy">${escapeHtml(content.identity.introduction)}</p>
+              <p class="hero-note">${escapeHtml(content.identity.note)}</p>
+              <ul class="hero-links">${heroLinks}</ul>
+            </div>
+
+            <aside class="status-card" aria-label="${escapeHtml(content.status.label)}">
+              <div class="status-title">${escapeHtml(content.status.label)}</div>
+              <div class="status-monogram" aria-hidden="true">${escapeHtml(content.status.initials)}</div>
+              <dl>
+                <div><dt>${escapeHtml(content.status.locationLabel)}</dt><dd>${escapeHtml(content.status.location)}</dd></div>
+                <div><dt>Local time</dt><dd><time class="nyc-time">Eastern Time</time></dd></div>
+                <div><dt>${escapeHtml(content.status.stateLabel)}</dt><dd class="online">${escapeHtml(content.status.state)}</dd></div>
+                <div><dt>${escapeHtml(content.status.visitsLabel)}</dt><dd><output id="visit-count">000001</output></dd></div>
+              </dl>
+              <p class="construction-note">${escapeHtml(content.status.construction)}</p>
+              <div class="mini-badges" aria-label="Homepage badges">${statusBadges}</div>
+            </aside>
+          </div>
         </section>
 
         <section class="section work-section" id="${escapeHtml(content.work.id)}" aria-labelledby="work-title">
@@ -151,7 +178,7 @@
       </main>
 
       <footer>
-        <p>${escapeHtml(content.footer.location)} · <time id="nyc-time">Eastern Time</time></p>
+        <p>${escapeHtml(content.footer.location)} · <time class="nyc-time">Eastern Time</time></p>
         <p>© <span id="footer-year"></span> ${escapeHtml(content.identity.name)}</p>
         <a href="#top">Back to top ↑</a>
       </footer>
