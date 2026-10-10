@@ -30,12 +30,15 @@
     const date = item.date
       ? `<time datetime="${escapeHtml(item.date)}">${escapeHtml(item.date)}</time>`
       : '';
+    const period = item.period
+      ? `<span class="entry-period">${escapeHtml(item.period)}</span>`
+      : '';
 
     return `
       <article>
         <div class="entry-heading">
           <h3>${title}</h3>
-          ${date}
+          ${date}${period}
         </div>
         <p>${escapeHtml(item.summary)}</p>
         ${renderTags(item.tags)}
@@ -107,7 +110,18 @@
           <p class="command"><span>${escapeHtml(content.identity.command.split(':')[0])}</span>:${escapeHtml(content.identity.command.split(':').slice(1).join(':'))}</p>
           <h1 id="hero-title">${escapeHtml(content.identity.headline)}</h1>
           <p class="hero-copy">${escapeHtml(content.identity.introduction)}</p>
-          <p class="hero-note">${escapeHtml(content.identity.note)}</p>
+          <div class="homepage-notices">
+            <p class="important-note">
+              <span class="construction-blink" aria-hidden="true">${escapeHtml(content.homepageExtras.constructionBadge)}</span>
+              ${escapeHtml(content.identity.note)}
+            </p>
+            <aside class="counter-panel" aria-label="${escapeHtml(content.homepageExtras.visitorTitle)}">
+              <h2>${escapeHtml(content.homepageExtras.visitorTitle)}</h2>
+              <p>${escapeHtml(content.homepageExtras.visitorIntro)}</p>
+              <output id="visit-count" class="counter" aria-label="Visits from this browser">000001</output>
+              <p class="counter-disclaimer">${escapeHtml(content.homepageExtras.visitorDisclaimer)}</p>
+            </aside>
+          </div>
           <ul class="hero-links">${heroLinks}</ul>
         </section>
 

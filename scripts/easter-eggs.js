@@ -2,6 +2,7 @@ const root = document.documentElement;
 const themeToggle = document.querySelector('.theme-toggle');
 const nycTime = document.querySelector('#nyc-time');
 const footerYear = document.querySelector('#footer-year');
+const visitCount = document.querySelector('#visit-count');
 const signButton = document.querySelector('.street-sign');
 const mainSign = document.querySelector('.street-sign-main');
 const crossSign = document.querySelector('.street-sign-cross');
@@ -42,6 +43,19 @@ function updateClock() {
     minute: '2-digit',
     timeZoneName: 'short',
   }).format(new Date());
+}
+
+function updateVisitCount() {
+  if (!visitCount) return;
+
+  try {
+    const previous = Number(localStorage.getItem('henry-visits') || 0);
+    const visits = Number.isSafeInteger(previous) && previous >= 0 ? previous + 1 : 1;
+    localStorage.setItem('henry-visits', String(visits));
+    visitCount.textContent = String(visits).padStart(6, '0');
+  } catch {
+    visitCount.textContent = '000001';
+  }
 }
 
 function rotateSign() {
@@ -88,6 +102,7 @@ document.addEventListener('keydown', event => {
 
 setTheme(root.dataset.theme);
 updateClock();
+updateVisitCount();
 setInterval(updateClock, 30_000);
 
 if (footerYear) {
