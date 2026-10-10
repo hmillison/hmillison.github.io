@@ -28,6 +28,26 @@ const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <button class="spark-button" type="button" title="Add stars" aria-label="Add stars"></button>
+        <div class="site-cats" aria-hidden="true">
+          <svg class="site-cat site-cat--tabby" viewBox="0 0 180 140" role="img">
+            <g class="cat-drawing">
+              <path class="cat-outline" d="M39 104c-8-23-4-48 10-62l-3-23 19 13c11-4 24-4 35 0l19-13-3 24c10 10 15 24 14 39-1 25-18 38-47 38-22 0-39-5-44-16Z" />
+              <path class="cat-stripe" d="M59 31l8 17M77 27l3 19M97 28l-5 18M42 72l22 6M43 88l20 3M119 73l-20 6M121 88l-19 3" />
+              <path class="cat-face" d="M61 70h4M98 70h4M69 84c7 5 16 5 23 0M81 76v6" />
+              <path class="cat-whisker" d="M61 82L30 77M61 87L28 91M101 82l31-5M101 87l33 4" />
+              <path class="cat-tail" d="M47 104c-22 5-31-6-27-20 2-8 8-12 14-12" />
+            </g>
+          </svg>
+          <svg class="site-cat site-cat--tuxedo" viewBox="0 0 180 140" role="img">
+            <g class="cat-drawing">
+              <path class="cat-outline" d="M39 104c-8-23-4-48 10-62l-3-23 19 13c11-4 24-4 35 0l19-13-3 24c10 10 15 24 14 39-1 25-18 38-47 38-22 0-39-5-44-16Z" />
+              <path class="cat-white" d="M71 63c5-7 17-7 22 0l8 38c-7 7-28 7-37 0Z" />
+              <path class="cat-face" d="M61 70h4M98 70h4M69 84c7 5 16 5 23 0M81 76v6" />
+              <path class="cat-whisker" d="M61 82L30 77M61 87L28 91M101 82l31-5M101 87l33 4" />
+              <path class="cat-tail" d="M47 104c-22 5-31-6-27-20 2-8 8-12 14-12" />
+            </g>
+          </svg>
+        </div>
         <h1 id="hero-title">{SITE_CONTENT.identity.headline}</h1>
         <p class="hero-copy">{SITE_CONTENT.identity.introduction}</p>
         <div class="homepage-notices">
