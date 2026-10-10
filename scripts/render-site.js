@@ -136,6 +136,7 @@
               <span class="street-sign-cross">${escapeHtml(firstIntersection[1])}</span>
             </button>
             <p>${escapeHtml(content.streetSigns.instructions)}</p>
+            ${content.streetSigns.aside ? `<p class="sign-aside">${escapeHtml(content.streetSigns.aside)}</p>` : ''}
           </div>
         </section>
 
@@ -146,13 +147,17 @@
             <p class="contact-kicker">${escapeHtml(content.contact.eyebrow)}</p>
             <h2 id="contact-title">${escapeHtml(content.contact.title)}</h2>
           </div>
-          <p>${escapeHtml(content.contact.copy)} <a href="${escapeHtml(content.contact.href)}">${escapeHtml(content.contact.linkLabel)}</a>.</p>
+          <div class="contact-copy">
+            <p>${escapeHtml(content.contact.copy)} <a href="${escapeHtml(content.contact.href)}">${escapeHtml(content.contact.linkLabel)}</a>.</p>
+            ${content.contact.finePrint ? `<p class="contact-fineprint">${escapeHtml(content.contact.finePrint)}</p>` : ''}
+          </div>
         </section>
       </main>
 
       <footer>
         <p>${escapeHtml(content.footer.location)} · <time id="nyc-time">Eastern Time</time></p>
-        <p>© <span id="footer-year"></span> ${escapeHtml(content.identity.name)}</p>
+        <p>© <span id="footer-year"></span> ${escapeHtml(content.identity.name)}. ${escapeHtml(content.footer.legal || '')}</p>
+        <p>${escapeHtml(content.footer.disclaimer || '')}</p>
         <a href="#top">Back to top ↑</a>
       </footer>
     </div>`;

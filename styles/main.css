@@ -507,11 +507,18 @@ button {
   background: #000038;
 }
 
-.contact-section > p {
+.contact-copy > p {
   max-width: 34rem;
   margin: 0;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.2rem;
+}
+
+.contact-copy > .contact-fineprint {
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
 }
 
 footer {

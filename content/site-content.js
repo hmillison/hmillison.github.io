@@ -11,8 +11,8 @@ window.SITE_CONTENT = {
     command: 'henry@new-york:~$ whoami',
     headline: 'Hello! My name is Henry!',
     introduction:
-      'I’m a software engineer living in the greatest city in the world, working with businesses of all shapes and sizes to solve their problems with technology.',
-    note: 'Design, development, and the occasionally questionable street sign.',
+      'I’m a software engineer in the greatest city in the world, New York, working with businesses of all shapes and sizes to solve their problems with technology.',
+    note: 'This site is intentionally under construction forever.',
   },
 
   links: [
@@ -24,7 +24,7 @@ window.SITE_CONTENT = {
   work: {
     id: 'work',
     navLabel: 'Work',
-    eyebrow: 'Selected problem areas',
+    eyebrow: 'Things I have built for money',
     title: 'Things I’ve worked on',
     items: [
       {
@@ -48,15 +48,16 @@ window.SITE_CONTENT = {
     eyebrow: 'A little more context',
     title: 'Design and development belong in the same room.',
     paragraphs: [
-      'My academic background is in Human–Computer Interaction and Computer Science. I care about the implementation, the interface, and the gap between what a system does and what a person thinks it does.',
-      'I specialize in React, Vue, and TypeScript, but I’m happy working across the stack when that is what the problem needs.',
+      'I like the part where design and development overlap: making complicated systems understandable, useful, and maybe even pleasant. My academic background is in Human–Computer Interaction and Computer Science, which means I have opinions about both the interface and the code underneath it.',
+      'I specialize in React, Vue, and TypeScript, plus the surrounding front-end ecosystem. I also work across the stack when that is what getting the job done requires.',
     ],
     technologies: ['React', 'Vue', 'TypeScript', 'HCI', 'Design systems', 'The web'],
   },
 
   streetSigns: {
-    label: 'Municipal typography watch',
-    instructions: 'Click the signs to tour fictional intersections.',
+    label: 'Henry’s municipal typography watch',
+    instructions: 'Click the signs to tour several fictional intersections.',
+    aside: 'If your street sign uses Comic Sans or Papyrus, I would genuinely like to see it.',
     intersections: [
       ['HENRY ST', 'COMIC SANS WAY'],
       ['MILLISON AV', 'PAPYRUS PLAZA'],
@@ -87,13 +88,16 @@ window.SITE_CONTENT = {
     id: 'contact',
     navLabel: 'Contact',
     eyebrow: 'Electronic mail encouraged',
-    title: 'Want to talk?',
-    copy: 'Technology, design, New York, or a badly typeset street sign are all acceptable reasons to reach out.',
-    linkLabel: 'Reach out',
+    title: 'Sign my guestbook*',
+    copy: 'Want to talk about technology, design, New York, or a badly typeset street sign?',
+    linkLabel: 'Send electronic mail',
+    finePrint: '*There is no database. This opens your email client, as nature intended.',
     href: 'mailto:me@henrymillison.com',
   },
 
   footer: {
     location: 'Hand-coded in New York',
+    legal: 'All wrongs reserved.',
+    disclaimer: 'No cookies. No tracking. No inspirational newsletter.',
   },
 };
