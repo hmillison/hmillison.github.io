@@ -10,6 +10,7 @@ test('build emits the complete work history as static HTML', () => {
   assert.match(html, /July 2023/);
   assert.match(html, /July 2025/);
   assert.match(html, /Building a next generation global systematic trading platform/);
+  assert.ok(html.indexOf('Citadel Securities</h3>') < html.indexOf('Citadel Securities Research Platform'));
   assert.doesNotMatch(html, /Covered by NDA/i);
   assert.doesNotMatch(html, /whoami/);
   assert.match(html, /href="https:\/\/newsroom\.reportablenews\.com\/pr\/reportable-launches-reportabot-an-ai-powered-tool-to-generate-news-releases-in-under-60-seconds"/);

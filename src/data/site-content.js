@@ -33,14 +33,14 @@ const siteContent = {
     title: 'Things I built for money',
     items: [
       {
-        title: 'Citadel Securities Research Platform',
-        period: 'July 2023 – July 2025',
-        summary: 'Led UI development for a quantitative research platform.',
-      },
-      {
         title: 'Citadel Securities',
         period: 'Present',
         summary: 'Building a next generation global systematic trading platform.',
+      },
+      {
+        title: 'Citadel Securities Research Platform',
+        period: 'July 2023 – July 2025',
+        summary: 'Led UI development for a quantitative research platform.',
       },
       {
         title: 'CreditSights Mobile App Rebuild',
