@@ -1,21 +1,15 @@
 # Editing site content
 
-All editable copy and section entries live in:
-
-```text
-content/site-content.js
-```
-
-`index.html` is only the page shell. Navigation and sections are generated automatically.
+The site is built with Astro. Page markup lives in `src/pages/index.astro`, the shared HTML shell is `src/layouts/BaseLayout.astro`, and editable copy plus collections live in `src/data/site-content.js`.
 
 ## Add a work item
 
-Add an object to `work.items`. Use `period` for human date ranges such as `Fall 2023` or `Present`; use `href` for an optional project link.
+Add an object to `work.items`. Use `period` for display dates such as `Fall 2023` or `Present`; use `href` for an optional project link.
 
 ```js
 {
   title: 'Project or problem area',
-  period: 'Fall 2023', // optional; use date for machine-readable ISO dates in Notes/Recipes
+  period: 'Fall 2023',
   summary: 'A short, factual description.',
   href: 'https://example.com', // optional
   external: true, // optional; opens in a new tab
@@ -23,42 +17,34 @@ Add an object to `work.items`. Use `period` for human date ranges such as `Fall 
 }
 ```
 
-## Add a note
+## Add a note or recipe
 
-Add an object to `notes.items`:
+Add an object to the corresponding `notes.items` or `recipes.items` array:
 
 ```js
 {
-  title: 'Why this interface works',
+  title: 'A short title',
   date: '2026-10-10',
   summary: 'A one- or two-sentence description.',
-  href: '/notes/why-this-interface-works.html',
+  href: '/notes/a-short-title.html',
   tags: ['design', 'web'], // optional
-}
-```
-
-## Add a recipe
-
-Add an object to `recipes.items`:
-
-```js
-{
-  title: 'Recipe title',
-  date: '2026-10-10',
-  summary: 'What it is and why it is worth making.',
-  href: '/recipes/recipe-title.html',
-  tags: ['dinner', 'seafood'], // optional
 }
 ```
 
 Empty Notes and Recipes sections display their configured `emptyMessage`. Remove that message or set it to an empty string if you want an empty section hidden.
 
-## Homepage notices
+## Homepage extras
 
-The construction note lives in `identity.note`. Its `NEW!` label and the visitor-counter copy live in `homepageExtras`. The counter increments in this browser's `localStorage`; it is not sent to a server.
+The construction note, badge and visitor-counter wording are in `src/data/site-content.js`. The counter increments in this browser's `localStorage`; it is not sent to a server.
 
-## Add another collection
+## Build and preview
 
-1. Copy the shape used by `notes` or `recipes` in `content/site-content.js`.
-2. Add the collection key to `COLLECTION_KEYS` in `scripts/render-site.js`.
-3. The renderer will add its navigation link and cards.
+```sh
+npm ci
+npm run check
+npm run build
+npm test
+npm run preview
+```
+
+GitHub Actions runs the checks, builds static HTML into `dist/`, then deploys that artifact to GitHub Pages. Keep `public/CNAME` in sync with the domain configured in GitHub Pages.

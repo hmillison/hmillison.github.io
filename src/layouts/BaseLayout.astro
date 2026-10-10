@@ -1,39 +1,45 @@
+---
+import '../styles/main.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Henry Millison — Personal Homepage',
+  description = "Henry Millison's personal homepage: software, interfaces, New York, recipes, notes, and questionable municipal typography.",
+} = Astro.props;
+---
 <!doctype html>
 <html lang="en" data-theme="weird">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Henry Millison's personal homepage: software, interfaces, New York, recipes, notes, and questionable municipal typography."
-    />
+    <meta name="description" content={description} />
     <meta name="theme-color" content="#0000a8" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230000a8'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='serif' font-size='48' fill='%2300ffff'%3E★%3C/text%3E%3C/svg%3E" />
-    <title>Henry Millison — Personal Homepage</title>
-    <link rel="stylesheet" href="./styles/main.css" />
-    <script>
-      const savedTheme = localStorage.getItem('henry-theme');
-      document.documentElement.dataset.theme = savedTheme === 'plain' ? 'plain' : 'weird';
+    <title>{title}</title>
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem('henry-theme') === 'plain' ? 'plain' : 'weird';
+      } catch {
+        document.documentElement.dataset.theme = 'weird';
+      }
     </script>
   </head>
-
   <body>
     <canvas id="starfield" aria-hidden="true"></canvas>
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="spark-layer" aria-hidden="true"></div>
-    <div id="site-root"></div>
-
+    <slot />
     <noscript>
       <main class="no-script">
         <h1>Henry Millison</h1>
-        <p>This hand-coded homepage needs JavaScript to assemble its content.</p>
+        <p>This hand-coded homepage needs JavaScript to assemble its interactive details.</p>
         <p><a href="mailto:me@henrymillison.com">Email Henry</a></p>
       </main>
     </noscript>
-
-    <script src="./content/site-content.js"></script>
-    <script src="./scripts/render-site.js"></script>
-    <script src="./scripts/starfield.js"></script>
-    <script src="./scripts/easter-eggs.js"></script>
+    <script is:inline src="/scripts/starfield.js"></script>
   </body>
 </html>

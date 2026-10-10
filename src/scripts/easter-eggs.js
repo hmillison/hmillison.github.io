@@ -1,3 +1,5 @@
+import SITE_CONTENT from '../data/site-content.js';
+
 const root = document.documentElement;
 const themeToggle = document.querySelector('.theme-toggle');
 const nycTime = document.querySelector('#nyc-time');
@@ -9,9 +11,7 @@ const crossSign = document.querySelector('.street-sign-cross');
 const sparkButton = document.querySelector('.spark-button');
 const sparkLayer = document.querySelector('.spark-layer');
 
-const signs = window.SITE_CONTENT?.streetSigns?.intersections || [
-  ['HENRY ST', 'COMIC SANS WAY'],
-];
+const signs = SITE_CONTENT.streetSigns.intersections;
 
 let signIndex = 0;
 

@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SITE_CONTENT from '../data/site-content.js';
+
+const collectionKeys = ['notes', 'recipes'] as const;
+const collections = collectionKeys
+  .map((key) => SITE_CONTENT[key])
+  .filter((section) => section.items.length > 0 || section.emptyMessage);
+const navSections = [SITE_CONTENT.work, SITE_CONTENT.about, ...collections, SITE_CONTENT.contact];
+const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
+---
+<BaseLayout>
+  <div class="site-shell" id="site-root">
+    <header class="site-header" id="top">
+      <a class="wordmark" href="#top" aria-label={`${SITE_CONTENT.identity.name}, home`}>
+        <span>{SITE_CONTENT.identity.firstName}</span>
+        <span>{SITE_CONTENT.identity.lastName}</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        {navSections.map((section) => <a href={`#${section.id}`}>{section.navLabel}</a>)}
+      </nav>
+      <button class="theme-toggle" type="button" aria-pressed="false">
+        <span class="weird-label">Plain version</span>
+        <span class="plain-label">Fun version</span>
+      </button>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <button class="spark-button" type="button" title="Add stars" aria-label="Add stars"></button>
+        <p class="command"><span>{SITE_CONTENT.identity.command.split(':')[0]}</span>:{SITE_CONTENT.identity.command.split(':').slice(1).join(':')}</p>
+        <h1 id="hero-title">{SITE_CONTENT.identity.headline}</h1>
+        <p class="hero-copy">{SITE_CONTENT.identity.introduction}</p>
+        <div class="homepage-notices">
+          <p class="important-note">
+            <span class="construction-blink" aria-hidden="true">{SITE_CONTENT.homepageExtras.constructionBadge}</span>
+            {SITE_CONTENT.identity.note}
+          </p>
+          <aside class="counter-panel" aria-label={SITE_CONTENT.homepageExtras.visitorTitle}>
+            <h2>{SITE_CONTENT.homepageExtras.visitorTitle}</h2>
+            <p>{SITE_CONTENT.homepageExtras.visitorIntro}</p>
+            <output id="visit-count" class="counter" aria-label="Visits from this browser">000001</output>
+            <p class="counter-disclaimer">{SITE_CONTENT.homepageExtras.visitorDisclaimer}</p>
+          </aside>
+        </div>
+        <ul class="hero-links">
+          {SITE_CONTENT.links.map((link) => (
+            <li>
+              <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="section work-section" id={SITE_CONTENT.work.id} aria-labelledby="work-title">
+        <header class="section-header"><h2 id="work-title">{SITE_CONTENT.work.title}</h2></header>
+        <div class="work-list">
+          {SITE_CONTENT.work.items.map((item) => (
+            <article>
+              <div class="entry-heading">
+                <h3>
+                  {item.href ? (
+                    <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>
+                      {item.title}
+                    </a>
+                  ) : item.title}
+                </h3>
+                {item.date && <time datetime={item.date}>{item.date}</time>}
+                {item.period && <span class="entry-period">{item.period}</span>}
+              </div>
+              <p>{item.summary}</p>
+              {item.tags?.length > 0 && (
+                <ul class="entry-tags" aria-label="Tags">
+                  {item.tags.map((tag: string) => <li>{tag}</li>)}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section about-section" id={SITE_CONTENT.about.id} aria-labelledby="about-title">
+        <div class="about-copy">
+          <header class="section-header"><h2 id="about-title">{SITE_CONTENT.about.title}</h2></header>
+          {SITE_CONTENT.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          <ul class="technology-list" aria-label="Technologies and interests">
+            {SITE_CONTENT.about.technologies.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="sign-corner">
+          <p class="sign-label">{SITE_CONTENT.streetSigns.label}</p>
+          <button class="street-sign" type="button" title="Change the intersection">
+            <span class="street-sign-main">{firstIntersection[0]}</span>
+            <span class="street-sign-cross">{firstIntersection[1]}</span>
+          </button>
+          <p>{SITE_CONTENT.streetSigns.instructions}</p>
+          {SITE_CONTENT.streetSigns.aside && <p class="sign-aside">{SITE_CONTENT.streetSigns.aside}</p>}
+        </div>
+      </section>
+
+      {collections.map((collection) => (
+        <section class="section collection-section" id={collection.id} aria-labelledby={`${collection.id}-title`}>
+          <header class="section-header"><h2 id={`${collection.id}-title`}>{collection.title}</h2></header>
+          {collection.items.length > 0 ? (
+            <div class="collection-list">
+              {collection.items.map((item) => (
+                <article>
+                  <div class="entry-heading">
+                    <h3>
+                      {item.href ? (
+                        <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>
+                          {item.title}
+                        </a>
+                      ) : item.title}
+                    </h3>
+                    {item.date && <time datetime={item.date}>{item.date}</time>}
+                    {item.period && <span class="entry-period">{item.period}</span>}
+                  </div>
+                  <p>{item.summary}</p>
+                  {item.tags?.length > 0 && (
+                    <ul class="entry-tags" aria-label="Tags">
+                      {item.tags.map((tag: string) => <li>{tag}</li>)}
+                    </ul>
+                  )}
+                </article>
+              ))}
+            </div>
+          ) : <p class="empty-message">{collection.emptyMessage}</p>}
+        </section>
+      ))}
+
+      <section class="contact-section" id={SITE_CONTENT.contact.id} aria-labelledby="contact-title">
+        <div><h2 id="contact-title">{SITE_CONTENT.contact.title}</h2></div>
+        <div class="contact-copy">
+          <p>{SITE_CONTENT.contact.copy} <a href={SITE_CONTENT.contact.href}>{SITE_CONTENT.contact.linkLabel}</a>.</p>
+          {SITE_CONTENT.contact.finePrint && <p class="contact-fineprint">{SITE_CONTENT.contact.finePrint}</p>}
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>{SITE_CONTENT.footer.location} · <time id="nyc-time">Eastern Time</time></p>
+      <p>© <span id="footer-year"></span> {SITE_CONTENT.identity.name}. {SITE_CONTENT.footer.legal || ''}</p>
+      <p>{SITE_CONTENT.footer.disclaimer || ''}</p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </div>
+  <script src="../scripts/easter-eggs.js"></script>
+</BaseLayout>

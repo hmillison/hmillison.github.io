@@ -1,9 +1,9 @@
 /*
  * Edit this file to change the site's words and add entries.
- * The renderer automatically builds navigation and sections from this object.
- * See CONTENT.md for item examples.
+ * Astro builds sections and navigation from this data.
+ * See CONTENT.md for examples.
  */
-window.SITE_CONTENT = {
+const siteContent = {
   identity: {
     name: 'Henry Millison',
     firstName: 'Henry',
@@ -157,3 +157,5 @@ window.SITE_CONTENT = {
     disclaimer: 'No cookies. No tracking. No inspirational newsletter.',
   },
 };
+
+export default siteContent;
