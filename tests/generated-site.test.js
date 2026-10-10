@@ -47,6 +47,16 @@ test('the build includes decorative tabby and tuxedo cats with reduced-motion su
   assert.match(css, /cat-float/);
 });
 
+test('cat animations live beside the wordmark in the top-left header', () => {
+  const headerStart = html.indexOf('<header class="site-header"');
+  const headerEnd = html.indexOf('</header>', headerStart);
+  const header = html.slice(headerStart, headerEnd);
+  const heroStart = html.indexOf('<section class="hero"');
+  const heroEnd = html.indexOf('</section>', heroStart);
+  const hero = html.slice(heroStart, heroEnd);
+  assert.match(header, /class="brand-cluster"[\s\S]*class="wordmark"[\s\S]*class="site-cats"/);
+  assert.doesNotMatch(hero, /class="site-cats"/);
+});
 test('the build is static and contains no client-side template placeholders', () => {
   assert.doesNotMatch(html, /\{\{[^]*?\}\}/);
   assert.match(html, /id="main"/);
@@ -54,15 +64,29 @@ test('the build is static and contains no client-side template placeholders', ()
   assert.match(html, /rel="noopener noreferrer"/);
 });
 
-test('the homepage links to all four supplied recipe pages', () => {
-  assert.match(html, /href="\/recipes\/mapo-tofu"/);
-  assert.match(html, /href="\/recipes\/braised-short-rib-shallot-pickle"/);
-  assert.match(html, /href="\/recipes\/rice-cracker-salad"/);
-  assert.match(html, /href="\/recipes\/soy-sauce-chicken-over-rice"/);
-  assert.match(html, /Mapo tofu/);
-  assert.match(html, /Braised Short Rib \+ Shallot Pickle/);
-  assert.match(html, /Rice Cracker Salad/);
-  assert.match(html, /Soy Sauce Chicken over Rice/);
+test('the homepage links to a separate recipe index instead of listing every recipe', () => {
+  assert.match(html, /<a href="\/recipes">Recipes<\/a>/);
+  assert.doesNotMatch(html, /href="\/recipes\/mapo-tofu"/);
+  assert.doesNotMatch(html, /href="\/recipes\/braised-short-rib-shallot-pickle"/);
+  assert.doesNotMatch(html, /href="\/recipes\/rice-cracker-salad"/);
+  assert.doesNotMatch(html, /href="\/recipes\/soy-sauce-chicken-over-rice"/);
+});
+
+test('recipe index lists the supplied recipes as blog-style entries', async () => {
+  const index = await readFile(new URL('../dist/recipes.html', import.meta.url), 'utf8');
+  for (const slug of ['mapo-tofu', 'braised-short-rib-shallot-pickle', 'rice-cracker-salad', 'soy-sauce-chicken-over-rice']) {
+    assert.match(index, new RegExp(`href="/recipes/${slug}/?"`));
+  }
+  assert.match(index, /Mapo tofu/);
+  assert.match(index, /Braised Short Rib \+ Shallot Pickle/);
+  assert.match(index, /Rice Cracker Salad/);
+  assert.match(index, /Soy Sauce Chicken over Rice/);
+});
+
+test('recipe detail pages return to the index and omit the kitchen-notes kicker', async () => {
+  const recipe = await readFile(new URL('../dist/recipes/mapo-tofu.html', import.meta.url), 'utf8');
+  assert.match(recipe, /href="\/recipes"/);
+  assert.doesNotMatch(recipe, /Henry.s kitchen notes/);
 });
 
 test('recipe pages contain the supplied ingredients and instructions', async () => {

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import recipes from '../../data/recipes.js';
+---
+<BaseLayout title="Recipes — Henry Millison" description="A small pile of recipes from Henry's kitchen.">
+  <div class="site-shell recipe-shell" id="site-root">
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Henry Millison, home">
+        <span>Henry</span>
+        <span>Millison</span>
+      </a>
+      <nav aria-label="Recipe navigation">
+        <a href="/">Home</a>
+      </nav>
+      <span class="recipe-stamp" aria-hidden="true">RECIPE FILES</span>
+    </header>
+
+    <main id="main" class="recipe-main">
+      <section class="recipe-index" aria-labelledby="recipe-index-title">
+        <header class="recipe-index-header">
+          <h1 id="recipe-index-title">Recipes</h1>
+          <p>Some things I make and eat.</p>
+        </header>
+        <div class="recipe-index-list">
+          {recipes.map((recipe) => (
+            <article class="recipe-index-entry">
+              <h2><a href={`/recipes/${recipe.slug}`}>{recipe.title}</a></h2>
+              <p>{recipe.summary}</p>
+              <a class="recipe-read-link" href={`/recipes/${recipe.slug}`}>Open recipe →</a>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <footer class="recipe-footer">
+      <a href="/">← Back home</a>
+      <a href="/">Henry Millison</a>
+    </footer>
+  </div>
+</BaseLayout>
