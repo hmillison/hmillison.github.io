@@ -24,8 +24,7 @@ window.SITE_CONTENT = {
   work: {
     id: 'work',
     navLabel: 'Work',
-    eyebrow: 'Things I have built for money',
-    title: 'Things I’ve worked on',
+    title: 'Things I built for money',
     items: [
       {
         title: 'Distributed systems',
@@ -45,7 +44,6 @@ window.SITE_CONTENT = {
   about: {
     id: 'about',
     navLabel: 'About',
-    eyebrow: 'A little more context',
     title: 'Design and development belong in the same room.',
     paragraphs: [
       'I like the part where design and development overlap: making complicated systems understandable, useful, and maybe even pleasant. My academic background is in Human–Computer Interaction and Computer Science, which means I have opinions about both the interface and the code underneath it.',
@@ -69,7 +67,6 @@ window.SITE_CONTENT = {
   notes: {
     id: 'notes',
     navLabel: 'Notes',
-    eyebrow: 'From the notebook',
     title: 'Notes',
     emptyMessage: 'Nothing published here yet.',
     items: [],
@@ -78,7 +75,6 @@ window.SITE_CONTENT = {
   recipes: {
     id: 'recipes',
     navLabel: 'Recipes',
-    eyebrow: 'Things worth making again',
     title: 'Recipes',
     emptyMessage: 'Nothing published here yet.',
     items: [],
@@ -87,7 +83,6 @@ window.SITE_CONTENT = {
   contact: {
     id: 'contact',
     navLabel: 'Contact',
-    eyebrow: 'Electronic mail encouraged',
     title: 'Sign my guestbook*',
     copy: 'Want to talk about technology, design, New York, or a badly typeset street sign?',
     linkLabel: 'Send electronic mail',

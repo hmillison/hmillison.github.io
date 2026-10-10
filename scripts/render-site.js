@@ -53,7 +53,6 @@
     return `
       <section class="section collection-section" id="${escapeHtml(collection.id)}" aria-labelledby="${escapeHtml(collection.id)}-title">
         <header class="section-header">
-          <p>${escapeHtml(collection.eyebrow)}</p>
           <h2 id="${escapeHtml(collection.id)}-title">${escapeHtml(collection.title)}</h2>
         </header>
         ${body}
@@ -114,7 +113,6 @@
 
         <section class="section work-section" id="${escapeHtml(content.work.id)}" aria-labelledby="work-title">
           <header class="section-header">
-            <p>${escapeHtml(content.work.eyebrow)}</p>
             <h2 id="work-title">${escapeHtml(content.work.title)}</h2>
           </header>
           <div class="work-list">${workItems}</div>
@@ -123,7 +121,6 @@
         <section class="section about-section" id="${escapeHtml(content.about.id)}" aria-labelledby="about-title">
           <div class="about-copy">
             <header class="section-header">
-              <p>${escapeHtml(content.about.eyebrow)}</p>
               <h2 id="about-title">${escapeHtml(content.about.title)}</h2>
             </header>
             ${aboutParagraphs}
@@ -144,7 +141,6 @@
 
         <section class="contact-section" id="${escapeHtml(content.contact.id)}" aria-labelledby="contact-title">
           <div>
-            <p class="contact-kicker">${escapeHtml(content.contact.eyebrow)}</p>
             <h2 id="contact-title">${escapeHtml(content.contact.title)}</h2>
           </div>
           <div class="contact-copy">

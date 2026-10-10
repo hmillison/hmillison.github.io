@@ -191,8 +191,6 @@ button {
 }
 
 .command,
-.section-header > p,
-.contact-kicker,
 .sign-label {
   margin: 0 0 0.7rem;
   color: var(--muted);
