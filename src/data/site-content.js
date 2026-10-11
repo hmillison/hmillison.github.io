@@ -116,7 +116,7 @@ const siteContent = {
       'I like the part where design and development overlap: making complicated systems understandable, useful, and maybe even pleasant. My academic background is in Human–Computer Interaction and Computer Science, which means I have opinions about both the interface and the code underneath it.',
       'I specialize in React, Vue, and TypeScript, plus the surrounding front-end ecosystem. I also work across the stack when that is what getting the job done requires.',
     ],
-    technologies: ['React', 'Vue', 'TypeScript', 'HCI', 'Design systems', 'The web'],
+    technologies: [],
   },
 
   streetSigns: {
@@ -126,7 +126,7 @@ const siteContent = {
     intersections: [
       ['HENRY ST', 'COMIC SANS WAY'],
       ['MILLISON AV', 'PAPYRUS PLAZA'],
-      ['HCI BLVD', 'VIEW SOURCE LN'],
+      ['JAVASCRIPT BLVD', 'VIEW SOURCE LN'],
       ['QUEENS', 'THE GREATEST CITY'],
     ],
   },
