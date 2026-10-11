@@ -66,6 +66,13 @@ test('the build includes decorative tabby and tuxedo cats with reduced-motion su
   assert.match(css, /cat-float/);
 });
 
+test('the cat mascots carry the photographed tabby and tuxedo markings', () => {
+  assert.match(html, /class="cat-tabby-muzzle"/);
+  assert.match(html, /class="cat-tuxedo-blaze"/);
+  assert.match(html, /class="cat-tuxedo-muzzle"/);
+  assert.equal((html.match(/class="cat-eye"/g) || []).length, 4);
+});
+
 test('cats run across the homepage top bar without a name logo', () => {
   const headerStart = html.indexOf('<header class="site-header"');
   const headerEnd = html.indexOf('</header>', headerStart);
