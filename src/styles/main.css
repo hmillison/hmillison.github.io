@@ -383,24 +383,6 @@ footer .counter-panel h2 {
   color: var(--yellow);
 }
 
-.spark-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 44px;
-  height: 44px;
-  border: 2px solid var(--cyan);
-  appearance: none;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.35rem;
-}
-
-.spark-button::before {
-  content: '✦';
-}
-
 .section {
   border-bottom: 1px dashed var(--cyan);
 }
@@ -704,7 +686,6 @@ html[data-theme='plain'] body {
 
 html[data-theme='plain'] body::before,
 html[data-theme='plain'] #starfield,
-html[data-theme='plain'] .spark-button,
 html[data-theme='plain'] .spark-layer {
   display: none;
 }
@@ -1034,11 +1015,6 @@ html[data-theme='plain'] .recipe-notes {
 
   .hero-copy {
     font-size: 1.2rem;
-  }
-
-  .spark-button {
-    top: 0.65rem;
-    right: 0.65rem;
   }
 
 }
