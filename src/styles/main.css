@@ -215,7 +215,7 @@ button {
 }
 
 .cat-drawing {
-  fill: #aa783e;
+  fill: #62574a;
   stroke: #120c23;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -223,7 +223,7 @@ button {
 }
 
 .site-cat--tuxedo .cat-drawing {
-  fill: #16162b;
+  fill: #111119;
 }
 
 .cat-outline {
@@ -238,12 +238,32 @@ button {
 }
 
 .cat-stripe {
-  stroke: #5c382b;
+  stroke: #28231f;
   stroke-width: 5;
 }
 
-.site-cat--tuxedo .cat-white {
-  fill: #f7f1dc;
+.cat-tabby-muzzle {
+  fill: #c6b18e;
+  stroke: #28231f;
+  stroke-width: 2;
+}
+
+.cat-tuxedo-blaze,
+.cat-tuxedo-muzzle,
+.cat-tuxedo-bib {
+  fill: #f4efe4;
+  stroke: #120c23;
+  stroke-width: 2;
+}
+
+.cat-eye {
+  fill: #b8c36d;
+  stroke: #120c23;
+  stroke-width: 3;
+}
+
+.cat-pupil {
+  fill: none;
   stroke: #120c23;
   stroke-width: 3;
 }
