@@ -4,6 +4,7 @@ import {join} from 'node:path';
 import test from 'node:test';
 
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+const styleSource = await readFile(new URL('../src/styles/main.css', import.meta.url), 'utf8');
 const cssFiles = await readdir(new URL('../dist/_astro/', import.meta.url));
 const css = (await Promise.all(cssFiles.filter((file) => file.endsWith('.css')).map((file) => readFile(join(new URL('../dist/_astro/', import.meta.url).pathname, file), 'utf8')))).join('\n');
 
@@ -49,13 +50,16 @@ test('the visible star control is removed and reduced motion is respected', asyn
   assert.match(source, /prefers-reduced-motion/);
 });
 
-test('visitor counter is in the footer instead of beside the introduction', () => {
+test('visitor counter is a compact inline footer item', () => {
   const footerStart = html.indexOf('<footer>');
   const footerEnd = html.indexOf('</footer>', footerStart);
   const footer = html.slice(footerStart, footerEnd);
   const beforeFooter = html.slice(0, footerStart);
-  assert.match(footer, /id="visit-count"/);
+  assert.match(footer, /<p class="footer-counter"[\s\S]*id="visit-count"/);
+  assert.doesNotMatch(footer, /counter-panel|<aside/);
   assert.doesNotMatch(beforeFooter, /id="visit-count"/);
+  assert.match(styleSource, /\.footer-counter\s*{[^}]*display:\s*inline-flex/s);
+  assert.doesNotMatch(styleSource, /\.counter-panel/);
 });
 
 test('the build includes decorative tabby and tuxedo cats with reduced-motion support', () => {

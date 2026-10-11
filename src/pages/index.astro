@@ -170,12 +170,11 @@ const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
       <p>© <span id="footer-year"></span> {SITE_CONTENT.identity.name}. {SITE_CONTENT.footer.legal || ''}</p>
       <p>{SITE_CONTENT.footer.disclaimer || ''}</p>
       <a href="#top">Back to top ↑</a>
-      <aside class="counter-panel footer-counter" aria-label={SITE_CONTENT.homepageExtras.visitorTitle}>
-        <h2>{SITE_CONTENT.homepageExtras.visitorTitle}</h2>
-        <p>{SITE_CONTENT.homepageExtras.visitorIntro}</p>
+      <p class="footer-counter" aria-label={SITE_CONTENT.homepageExtras.visitorTitle}>
+        <span>{SITE_CONTENT.homepageExtras.visitorTitle}</span>
         <output id="visit-count" class="counter" aria-label="Visits from this browser">000001</output>
-        <p class="counter-disclaimer">{SITE_CONTENT.homepageExtras.visitorDisclaimer}</p>
-      </aside>
+        <span class="counter-disclaimer">{SITE_CONTENT.homepageExtras.visitorDisclaimer}</span>
+      </p>
     </footer>
   </div>
   <script src="../scripts/easter-eggs.js"></script>

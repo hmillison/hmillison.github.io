@@ -25,8 +25,7 @@ const siteContent = {
   homepageExtras: {
     constructionBadge: 'NEW!',
     visitorTitle: 'Visitor counter',
-    visitorIntro: 'You are visitor from this browser:',
-    visitorDisclaimer: 'This number is real, local, and statistically meaningless.',
+    visitorDisclaimer: 'Local to this browser.',
   },
 
   work: {
