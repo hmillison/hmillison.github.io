@@ -113,8 +113,8 @@ const siteContent = {
     navLabel: 'About',
     title: 'Design and development belong in the same room.',
     paragraphs: [
-      'I like the part where design and development overlap: making complicated systems understandable, useful, and maybe even pleasant. My academic background is in Human–Computer Interaction and Computer Science, which means I have opinions about both the interface and the code underneath it.',
-      'I specialize in React, Vue, and TypeScript, plus the surrounding front-end ecosystem. I also work across the stack when that is what getting the job done requires.',
+      'I like the part where design and development overlap: making complicated systems understandable, useful, and maybe even pleasant. With an academic background in Human Computer Interaction and Computer Science, I have a passion for the intersection of design and development.',
+      'I specialize in React and TypeScript, plus the surrounding front-end ecosystem, but I enjoy working across the full stack to get the job done.',
     ],
     technologies: [],
   },
