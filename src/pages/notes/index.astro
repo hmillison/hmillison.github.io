@@ -1,0 +1,42 @@
+---
+import {getCollection} from 'astro:content';
+import AppShell from '../../components/AppShell.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const notes = (await getCollection('notes', ({data}) => !data.draft))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const navLinks = [
+  {label: 'Home', href: '/'},
+  {label: 'Notes', href: '/notes'},
+];
+---
+<BaseLayout title="Notes — Henry Millison" description="Cooking, travel, and other things Henry wants to remember.">
+  <AppShell navLinks={navLinks} navLabel="Notes navigation" shellClass="note-shell">
+    <main id="main" class="note-main">
+      <section class="note-index" aria-labelledby="note-index-title">
+        <header class="note-index-header">
+          <h1 id="note-index-title">Notes</h1>
+          <p>Cooking, travel, and other things I want to remember.</p>
+        </header>
+        <div class="note-index-list">
+          {notes.map((note) => (
+            <article class="note-index-entry">
+              <h2><a href={`/notes/${note.id}`}>{note.data.title}</a></h2>
+              <p>{note.data.summary}</p>
+              {note.data.tags.length > 0 && (
+                <ul class="note-tags" aria-label="Tags">
+                  {note.data.tags.map((tag) => <li><a href={`/tags/${tag}`}>{tag}</a></li>)}
+                </ul>
+              )}
+              <a class="note-read-link" href={`/notes/${note.id}`}>Open note →</a>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+    <footer class="note-footer" slot="footer">
+      <a href="/">← Back home</a>
+      <a href="/">Henry Millison</a>
+    </footer>
+  </AppShell>
+</BaseLayout>

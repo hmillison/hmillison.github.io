@@ -1,10 +1,10 @@
 # Editing site content
 
-The site is built with Astro. Page markup lives in `src/pages/index.astro`, the shared HTML shell is `src/layouts/BaseLayout.astro`, and editable copy plus collections live in `src/data/site-content.js`.
+The site is built with Astro. Page markup lives in `src/pages/`, the shared HTML shell is `src/layouts/BaseLayout.astro`, and editable homepage copy lives in `src/data/site-content.js`.
 
 ## Add a work item
 
-Add an object to `work.items`. Use `period` for display dates such as `Fall 2023` or `Present`; use `href` for an optional project link.
+Add an object to `work.items` in `src/data/site-content.js`. Use `period` for display dates such as `Fall 2023` or `Present`; use `href` for an optional project link.
 
 ```js
 {
@@ -13,25 +13,30 @@ Add an object to `work.items`. Use `period` for display dates such as `Fall 2023
   summary: 'A short, factual description.',
   href: 'https://example.com', // optional
   external: true, // optional; opens in a new tab
-  tags: ['TypeScript', 'Maps'], // optional
 }
 ```
 
-## Add a note or recipe
+## Add a note
 
-Add an object to the corresponding `notes.items` or `recipes.items` array:
+Create a Markdown file in `src/content/notes/`. Its filename becomes the URL slug: `weekend-in-montreal.md` builds `/notes/weekend-in-montreal`.
 
-```js
-{
-  title: 'A short title',
-  date: '2026-10-10',
-  summary: 'A one- or two-sentence description.',
-  href: '/notes/a-short-title.html',
-  tags: ['design', 'web'], // optional
-}
+```md
+---
+title: A short title
+summary: A one- or two-sentence description.
+tags:
+  - travel
+  - montreal
+publishedAt: 2026-10-11 # optional
+draft: false # optional; defaults to false
+---
+
+Write the note in Markdown here.
 ```
 
-Empty Notes and Recipes sections display their configured `emptyMessage`. Remove that message or set it to an empty string if you want an empty section hidden.
+Every tag automatically gets an archive page at `/tags/<tag>`. Keep tags lowercase and URL-safe. Notes marked `draft: true` are excluded from note, tag, and detail pages.
+
+The schema for note frontmatter lives in `src/content.config.ts`. Astro validates it during checks and builds.
 
 ## Homepage extras
 

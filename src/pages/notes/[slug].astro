@@ -1,0 +1,45 @@
+---
+import {getCollection, render, type CollectionEntry} from 'astro:content';
+import AppShell from '../../components/AppShell.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({data}) => !data.draft);
+  return notes.map((note) => ({params: {slug: note.id}, props: {note}}));
+}
+
+interface Props {
+  note: CollectionEntry<'notes'>;
+}
+
+const {note}: Props = Astro.props;
+const {Content} = await render(note);
+const navLinks = [
+  {label: 'Home', href: '/'},
+  {label: 'Notes', href: '/notes'},
+];
+---
+<BaseLayout title={`${note.data.title} — Henry Millison`} description={note.data.summary}>
+  <AppShell navLinks={navLinks} navLabel="Notes navigation" shellClass="note-shell">
+    <main id="main" class="note-main">
+      <article class="note-page" aria-labelledby="note-title">
+        <header class="note-header">
+          <h1 id="note-title">{note.data.title}</h1>
+          <p class="note-summary">{note.data.summary}</p>
+          {note.data.tags.length > 0 && (
+            <ul class="note-tags" aria-label="Tags">
+              {note.data.tags.map((tag) => <li><a href={`/tags/${tag}`}>{tag}</a></li>)}
+            </ul>
+          )}
+        </header>
+        <div class="note-content">
+          <Content />
+        </div>
+      </article>
+    </main>
+    <footer class="note-footer" slot="footer">
+      <a href="/notes">← Back to notes</a>
+      <a href="/">Henry Millison</a>
+    </footer>
+  </AppShell>
+</BaseLayout>

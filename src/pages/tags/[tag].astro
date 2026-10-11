@@ -1,0 +1,55 @@
+---
+import {getCollection, type CollectionEntry} from 'astro:content';
+import AppShell from '../../components/AppShell.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({data}) => !data.draft);
+  const tags = [...new Set(notes.flatMap((note) => note.data.tags))];
+  return tags.map((tag) => ({
+    params: {tag},
+    props: {
+      tag,
+      notes: notes
+        .filter((note) => note.data.tags.includes(tag))
+        .sort((a, b) => a.data.title.localeCompare(b.data.title)),
+    },
+  }));
+}
+
+interface Props {
+  tag: string;
+  notes: CollectionEntry<'notes'>[];
+}
+
+const {tag, notes}: Props = Astro.props;
+const navLinks = [
+  {label: 'Home', href: '/'},
+  {label: 'Notes', href: '/notes'},
+];
+---
+<BaseLayout title={`${tag} notes — Henry Millison`} description={`Henry Millison's notes tagged ${tag}.`}>
+  <AppShell navLinks={navLinks} navLabel="Notes navigation" shellClass="note-shell">
+    <main id="main" class="note-main">
+      <section class="note-index" aria-labelledby="tag-title">
+        <header class="note-index-header">
+          <p class="note-eyebrow">Notes tagged</p>
+          <h1 id="tag-title">{tag}</h1>
+        </header>
+        <div class="note-index-list">
+          {notes.map((note) => (
+            <article class="note-index-entry">
+              <h2><a href={`/notes/${note.id}`}>{note.data.title}</a></h2>
+              <p>{note.data.summary}</p>
+              <a class="note-read-link" href={`/notes/${note.id}`}>Open note →</a>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+    <footer class="note-footer" slot="footer">
+      <a href="/notes">← All notes</a>
+      <a href="/">Henry Millison</a>
+    </footer>
+  </AppShell>
+</BaseLayout>

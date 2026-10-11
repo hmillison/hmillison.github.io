@@ -3,7 +3,6 @@
  * Astro builds sections and navigation from this data.
  * See CONTENT.md for examples.
  */
-import recipes from './recipes.js';
 
 const siteContent = {
   identity: {
@@ -134,21 +133,8 @@ const siteContent = {
     id: 'notes',
     navLabel: 'Notes',
     title: 'Notes',
-    emptyMessage: 'Nothing published here yet.',
-    items: [],
-  },
-
-  recipes: {
-    id: 'recipes',
-    navLabel: 'Recipes',
-    title: 'Recipes',
-    emptyMessage: 'Nothing published here yet.',
-    items: recipes.map(({slug, title, summary}) => ({
-      slug,
-      title,
-      summary,
-      href: `/recipes/${slug}`,
-    })),
+    href: '/notes',
+    description: 'Cooking, travel, and other things I want to remember.',
   },
 
   contact: {

@@ -762,23 +762,30 @@ html[data-theme='plain'] .technology-list li {
   color: #171717;
 }
 
-.recipe-shell {
+.note-shell {
   background: var(--panel);
 }
 
-.recipe-index {
+.note-main {
+  padding: clamp(1.2rem, 4vw, 3rem);
+}
+
+.note-index,
+.note-page {
   max-width: 900px;
   margin: 0 auto;
 }
 
-.recipe-index-header {
+.note-index-header,
+.note-header {
   margin-bottom: 1.5rem;
   padding: clamp(1.4rem, 4vw, 3rem);
   border: 1px dashed var(--cyan);
   background: var(--panel-deep);
 }
 
-.recipe-index-header h1 {
+.note-index-header h1,
+.note-header h1 {
   margin: 0;
   color: var(--yellow);
   font-family: var(--display);
@@ -786,130 +793,99 @@ html[data-theme='plain'] .technology-list li {
   line-height: 0.98;
 }
 
-.recipe-index-header p {
+.note-index-header p,
+.note-summary {
+  max-width: 720px;
   margin: 1rem 0 0;
   color: var(--muted);
 }
 
-.recipe-index-list {
+.note-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.note-index-list {
   border-top: 1px dashed var(--cyan);
 }
 
-.recipe-index-entry {
+.note-index-entry {
   padding: 1.25rem 0;
   border-bottom: 1px dashed var(--cyan);
 }
 
-.recipe-index-entry h2 {
+.note-index-entry h2 {
   margin: 0;
   font-family: var(--display);
   font-size: clamp(1.4rem, 3vw, 2rem);
 }
 
-.recipe-index-entry p {
+.note-index-entry p {
   max-width: 65ch;
   margin: 0.55rem 0;
 }
 
-.recipe-read-link {
+.note-read-link {
   font-family: var(--mono);
   font-size: 0.85rem;
 }
 
-html[data-theme='plain'] .recipe-index-header {
-  background: #f1eee5;
-  color: #171717;
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.8rem 0;
+  padding: 0;
+  list-style: none;
 }
 
-html[data-theme='plain'] .recipe-index-header h1 {
-  color: #171717;
-}
-
-.recipe-stamp {
-  justify-self: end;
-  padding: 0.25rem 0.45rem;
+.note-tags a {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
   border: 1px solid var(--pink);
-  color: var(--pink);
   font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
+  font-size: 0.75rem;
 }
 
-.recipe-main {
-  padding: clamp(1.2rem, 4vw, 3rem);
-}
-
-.recipe-page {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.recipe-header {
-  padding: clamp(1.4rem, 4vw, 3rem);
-  border: 1px dashed var(--cyan);
-  background: var(--panel-deep);
-}
-
-.recipe-header h1 {
-  margin: 0;
-  color: var(--yellow);
-  font-family: var(--display);
-  font-size: clamp(2.5rem, 7vw, 5.4rem);
-  line-height: 0.98;
-}
-
-.recipe-introduction {
-  max-width: 720px;
-  margin: 1.6rem 0 0;
+.note-content {
+  max-width: 72ch;
+  margin: 2rem auto 0;
+  overflow-wrap: anywhere;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.65;
 }
 
-.recipe-notes {
-  margin: 1.5rem 0;
-  padding: 0.8rem 1rem;
-  border: 2px dashed var(--yellow);
-  background: #300030;
-}
-
-.recipe-notes p {
-  margin: 0.35rem 0;
-}
-
-.recipe-columns {
-  display: grid;
-  grid-template-columns: minmax(12rem, 0.75fr) minmax(0, 1.25fr);
-  gap: clamp(1.5rem, 5vw, 4rem);
-  margin-top: 2rem;
-}
-
-.recipe-columns h2 {
-  margin: 0 0 1rem;
+.note-content h2 {
+  margin: 2.25rem 0 1rem;
   color: var(--yellow);
   font-family: var(--display);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   line-height: 1;
 }
 
-.recipe-ingredients,
-.recipe-instructions {
-  margin: 0;
-  padding-left: 1.3rem;
+.note-content li {
+  margin-bottom: 0.65rem;
 }
 
-.recipe-ingredients li,
-.recipe-instructions li {
-  margin: 0 0 0.8rem;
-  overflow-wrap: anywhere;
-}
-
-.recipe-ingredients li::marker,
-.recipe-instructions li::marker {
+.note-content li::marker {
   color: var(--pink);
   font-family: var(--mono);
 }
 
-.recipe-footer {
+.note-content a {
+  overflow-wrap: anywhere;
+}
+
+.note-content blockquote {
+  margin: 1.5rem 0;
+  padding: 0.8rem 1rem;
+  border: 2px dashed var(--yellow);
+  background: #300030;
+}
+
+.note-footer {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -920,22 +896,24 @@ html[data-theme='plain'] .recipe-index-header h1 {
   font-size: 0.8rem;
 }
 
-html[data-theme='plain'] .recipe-shell {
+html[data-theme='plain'] .note-shell {
   background: #fff;
 }
 
-html[data-theme='plain'] .recipe-header,
-html[data-theme='plain'] .recipe-footer {
+html[data-theme='plain'] .note-index-header,
+html[data-theme='plain'] .note-header,
+html[data-theme='plain'] .note-footer {
   background: #f1eee5;
   color: #171717;
 }
 
-html[data-theme='plain'] .recipe-header h1,
-html[data-theme='plain'] .recipe-columns h2 {
+html[data-theme='plain'] .note-index-header h1,
+html[data-theme='plain'] .note-header h1,
+html[data-theme='plain'] .note-content h2 {
   color: #171717;
 }
 
-html[data-theme='plain'] .recipe-notes {
+html[data-theme='plain'] .note-content blockquote {
   border-color: #735b00;
   background: #fffbe7;
 }
@@ -974,14 +952,6 @@ html[data-theme='plain'] .recipe-notes {
   .collection-section,
   .contact-section {
     grid-template-columns: 1fr;
-  }
-
-  .recipe-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .recipe-stamp {
-    display: none;
   }
 
   .work-section > .section-header,

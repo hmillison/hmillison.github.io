@@ -1,0 +1,63 @@
+---
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  navLinks: NavLink[];
+  navLabel?: string;
+  shellClass?: string;
+}
+
+const {
+  navLinks,
+  navLabel = 'Primary navigation',
+  shellClass,
+}: Props = Astro.props;
+---
+<div class:list={['site-shell', shellClass]} id="site-root">
+  <header class="site-header" id="top">
+    <div class="cat-runway">
+      <div class="site-cats" aria-hidden="true">
+        <svg class="site-cat site-cat--tabby" viewBox="0 0 180 140" role="img">
+          <g class="cat-drawing">
+            <path class="cat-outline" d="M39 104c-8-23-4-48 10-62l-3-23 19 13c11-4 24-4 35 0l19-13-3 24c10 10 15 24 14 39-1 25-18 38-47 38-22 0-39-5-44-16Z" />
+            <path class="cat-stripe" d="M58 35l10 17 12-15 12 15 11-17M43 69l20 7M43 85l20 2M119 69l-20 7M121 85l-20 2" />
+            <path class="cat-tabby-muzzle" d="M59 81c3-9 14-12 22-5 8-7 19-4 23 5-2 15-12 23-23 23S61 96 59 81Z" />
+            <ellipse class="cat-eye" cx="63" cy="67" rx="8" ry="6" />
+            <ellipse class="cat-eye" cx="100" cy="67" rx="8" ry="6" />
+            <path class="cat-pupil" d="M63 62v10M100 62v10" />
+            <path class="cat-face" d="M76 82l5 4 5-4M81 86v5M72 94c6 4 12 4 18 0" />
+            <path class="cat-whisker" d="M61 82L30 77M61 87L28 91M101 82l31-5M101 87l33 4" />
+            <path class="cat-tail" d="M47 104c-22 5-31-6-27-20 2-8 8-12 14-12" />
+          </g>
+        </svg>
+        <svg class="site-cat site-cat--tuxedo" viewBox="0 0 180 140" role="img">
+          <g class="cat-drawing">
+            <path class="cat-outline" d="M39 104c-8-23-4-48 10-62l-3-23 19 13c11-4 24-4 35 0l19-13-3 24c10 10 15 24 14 39-1 25-18 38-47 38-22 0-39-5-44-16Z" />
+            <path class="cat-tuxedo-blaze" d="M80 36c7 8 7 20 3 30l-5 12-6-14c-3-10 0-21 8-28Z" />
+            <path class="cat-tuxedo-muzzle" d="M57 79c4-10 16-13 24-5 9-8 22-4 25 7-2 16-12 24-25 24-12 0-22-9-24-26Z" />
+            <path class="cat-tuxedo-bib" d="M65 100c9 6 23 7 33 0l7 17c-12 5-38 5-48-2Z" />
+            <ellipse class="cat-eye" cx="63" cy="67" rx="8" ry="6" />
+            <ellipse class="cat-eye" cx="100" cy="67" rx="8" ry="6" />
+            <path class="cat-pupil" d="M63 62v10M100 62v10" />
+            <path class="cat-face" d="M76 82l5 4 5-4M81 86v5M72 94c6 4 12 4 18 0" />
+            <path class="cat-whisker" d="M61 82L30 77M61 87L28 91M101 82l31-5M101 87l33 4" />
+            <path class="cat-tail" d="M47 104c-22 5-31-6-27-20 2-8 8-12 14-12" />
+          </g>
+        </svg>
+      </div>
+    </div>
+    <nav aria-label={navLabel}>
+      {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <button class="theme-toggle" type="button" aria-pressed="false">
+      <span class="weird-label">Plain version</span>
+      <span class="plain-label">Fun version</span>
+    </button>
+  </header>
+
+  <slot />
+  <slot name="footer" />
+</div>
