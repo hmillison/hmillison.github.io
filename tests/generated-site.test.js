@@ -47,15 +47,19 @@ test('the build includes decorative tabby and tuxedo cats with reduced-motion su
   assert.match(css, /cat-float/);
 });
 
-test('cat animations live beside the wordmark in the top-left header', () => {
+test('cats run across the homepage top bar without a name logo', () => {
   const headerStart = html.indexOf('<header class="site-header"');
   const headerEnd = html.indexOf('</header>', headerStart);
   const header = html.slice(headerStart, headerEnd);
   const heroStart = html.indexOf('<section class="hero"');
   const heroEnd = html.indexOf('</section>', heroStart);
   const hero = html.slice(heroStart, heroEnd);
-  assert.match(header, /class="brand-cluster"[\s\S]*class="wordmark"[\s\S]*class="site-cats"/);
+  assert.match(header, /class="cat-runway"[\s\S]*class="site-cats"/);
+  assert.doesNotMatch(header, /class="wordmark"/);
+  assert.doesNotMatch(header, /Henry Millison/);
   assert.doesNotMatch(hero, /class="site-cats"/);
+  assert.match(css, /@keyframes cat-run/);
+  assert.match(css, /animation:[^;]*(?:alternate[^;]*cat-run|cat-run[^;]*alternate)/);
 });
 test('the build is static and contains no client-side template placeholders', () => {
   assert.doesNotMatch(html, /\{\{[^]*?\}\}/);
