@@ -30,6 +30,25 @@ test('personal counter and playful construction notice are rendered', () => {
   assert.match(html, /id="visit-count"/);
 });
 
+test('star bursts use an unobtrusive repeated-click gesture', async () => {
+  const {createRepeatedClickTrigger} = await import('../src/scripts/repeated-clicks.js');
+  const registerClick = createRepeatedClickTrigger({clicks: 3, windowMs: 600});
+
+  assert.equal(registerClick(0), false);
+  assert.equal(registerClick(200), false);
+  assert.equal(registerClick(400), true);
+  assert.equal(registerClick(500), false, 'the detector resets after a burst');
+  assert.equal(registerClick(1_500), false);
+  assert.equal(registerClick(2_200), false, 'clicks outside the time window do not trigger');
+});
+
+test('the visible star control is removed and reduced motion is respected', async () => {
+  const source = await readFile(new URL('../src/scripts/easter-eggs.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(html, /spark-button|Add stars/i);
+  assert.match(source, /document\.addEventListener\(['"]click['"]/);
+  assert.match(source, /prefers-reduced-motion/);
+});
+
 test('visitor counter is in the footer instead of beside the introduction', () => {
   const footerStart = html.indexOf('<footer>');
   const footerEnd = html.indexOf('</footer>', footerStart);

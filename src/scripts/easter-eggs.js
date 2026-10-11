@@ -1,4 +1,5 @@
 import SITE_CONTENT from '../data/site-content.js';
+import {createRepeatedClickTrigger} from './repeated-clicks.js';
 
 const root = document.documentElement;
 const themeToggle = document.querySelector('.theme-toggle');
@@ -8,8 +9,9 @@ const visitCount = document.querySelector('#visit-count');
 const signButton = document.querySelector('.street-sign');
 const mainSign = document.querySelector('.street-sign-main');
 const crossSign = document.querySelector('.street-sign-cross');
-const sparkButton = document.querySelector('.spark-button');
 const sparkLayer = document.querySelector('.spark-layer');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const registerSparkClick = createRepeatedClickTrigger();
 
 const signs = SITE_CONTENT.streetSigns.intersections;
 
@@ -79,13 +81,16 @@ function addSpark(x, y) {
 
 themeToggle?.addEventListener('click', toggleTheme);
 signButton?.addEventListener('click', rotateSign);
-sparkButton?.addEventListener('click', event => {
-  const rect = event.currentTarget.getBoundingClientRect();
+document.addEventListener('click', event => {
+  const target = event.target;
+  const isInteractive = target instanceof Element && target.closest('a, button, input, textarea, select, summary');
+  if (reducedMotion.matches || event.detail === 0 || isInteractive || !registerSparkClick(event.timeStamp)) return;
+
   for (let index = 0; index < 7; index += 1) {
     window.setTimeout(() => {
       addSpark(
-        rect.left + rect.width / 2 + (Math.random() - 0.5) * 100,
-        rect.top + rect.height / 2 + (Math.random() - 0.5) * 50,
+        event.clientX + (Math.random() - 0.5) * 100,
+        event.clientY + (Math.random() - 0.5) * 50,
       );
     }, index * 50);
   }
