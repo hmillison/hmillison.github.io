@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {readdir, readFile} from 'node:fs/promises';
+import {access, readdir, readFile} from 'node:fs/promises';
 import {join} from 'node:path';
 import test from 'node:test';
 
@@ -91,6 +91,32 @@ test('cats run across the homepage top bar without a name logo', () => {
   assert.match(css, /@keyframes cat-run/);
   assert.match(css, /animation:[^;]*(?:alternate[^;]*cat-run|cat-run[^;]*alternate)/);
 });
+
+test('homepage restores the centered starfield masthead without displacing the header cats', () => {
+  const headerStart = html.indexOf('<header class="site-header"');
+  const headerEnd = html.indexOf('</header>', headerStart);
+  const header = html.slice(headerStart, headerEnd);
+  const mastheadStart = html.indexOf('<section class="homepage-masthead"');
+  const mastheadEnd = html.indexOf('</section>', mastheadStart);
+  const masthead = html.slice(mastheadStart, mastheadEnd);
+
+  assert.match(header, /class="cat-runway"[\s\S]*class="site-cats"/);
+  assert.ok(mastheadStart > headerEnd, 'masthead follows the cat header');
+  assert.match(html, /class="homepage-marquee"/);
+  assert.match(masthead, /You have reached the personal homepage of/);
+  assert.match(masthead, /class="masthead-name"[\s\S]*HENRY[\s\S]*MILLISON/);
+  assert.match(masthead, /software engineer \/ design person \/ new yorker/);
+  assert.match(masthead, /class="masthead-orbit"[\s\S]*HM/);
+  assert.match(masthead, /class="rainbow-rule"/);
+  assert.match(styleSource, /\.homepage-masthead\s*{[^}]*background-image:\s*url\(['"]\/assets\/background\.jpg['"]\)/s);
+  assert.match(styleSource, /@keyframes homepage-marquee/);
+});
+
+test('the restored old-web elements omit badge collections and a visible spark control', () => {
+  assert.doesNotMatch(html, /class="badges?\b|badge-html|badge-nyc|badge-view|badge-human/);
+  assert.doesNotMatch(html, /spark-button|Add stars/i);
+});
+
 test('the build is static and contains no client-side template placeholders', () => {
   assert.doesNotMatch(html, /\{\{[^]*?\}\}/);
   assert.match(html, /id="main"/);
@@ -98,45 +124,70 @@ test('the build is static and contains no client-side template placeholders', ()
   assert.match(html, /rel="noopener noreferrer"/);
 });
 
-test('the homepage links to a separate recipe index instead of listing every recipe', () => {
-  assert.match(html, /<a href="\/recipes">Recipes<\/a>/);
-  assert.doesNotMatch(html, /href="\/recipes\/mapo-tofu"/);
-  assert.doesNotMatch(html, /href="\/recipes\/braised-short-rib-shallot-pickle"/);
-  assert.doesNotMatch(html, /href="\/recipes\/rice-cracker-salad"/);
-  assert.doesNotMatch(html, /href="\/recipes\/soy-sauce-chicken-over-rice"/);
+test('the homepage links to a general Notes section', () => {
+  assert.match(html, /<section[^>]*id="notes"[\s\S]*href="\/notes"[^>]*>Notes<\/a>[\s\S]*Cooking, travel, and other things I want to remember[\s\S]*<\/section>/);
+  assert.doesNotMatch(html, /id="recipes"/);
+  assert.doesNotMatch(html, />Recipes<\/a>/);
+  assert.doesNotMatch(html, /href="\/notes\/mapo-tofu"/);
 });
 
-test('recipe index lists the supplied recipes as blog-style entries', async () => {
-  const index = await readFile(new URL('../dist/recipes.html', import.meta.url), 'utf8');
+test('note pages reuse the homepage shell, including its cats', async () => {
+  const pages = await Promise.all([
+    '../dist/notes.html',
+    '../dist/notes/mapo-tofu.html',
+  ].map((path) => readFile(new URL(path, import.meta.url), 'utf8')));
+
+  for (const page of pages) {
+    const headerStart = page.indexOf('<header class="site-header"');
+    const headerEnd = page.indexOf('</header>', headerStart);
+    const header = page.slice(headerStart, headerEnd);
+    assert.match(header, /class="cat-runway"[\s\S]*class="site-cats"/);
+    assert.match(header, /class="site-cat site-cat--tabby"/);
+    assert.match(header, /class="site-cat site-cat--tuxedo"/);
+    assert.match(header, /class="theme-toggle"/);
+  }
+});
+
+test('notes index lists the migrated recipes as cooking notes', async () => {
+  const index = await readFile(new URL('../dist/notes.html', import.meta.url), 'utf8');
   for (const slug of ['mapo-tofu', 'braised-short-rib-shallot-pickle', 'rice-cracker-salad', 'soy-sauce-chicken-over-rice']) {
-    assert.match(index, new RegExp(`href="/recipes/${slug}/?"`));
+    assert.match(index, new RegExp(`href="/notes/${slug}/?"`));
   }
   assert.match(index, /Mapo tofu/);
   assert.match(index, /Braised Short Rib \+ Shallot Pickle/);
   assert.match(index, /Rice Cracker Salad/);
   assert.match(index, /Soy Sauce Chicken over Rice/);
+  assert.match(index, /href="\/tags\/cooking"[^>]*>cooking<\/a>/);
 });
 
-test('recipe detail pages return to the index and omit the kitchen-notes kicker', async () => {
-  const recipe = await readFile(new URL('../dist/recipes/mapo-tofu.html', import.meta.url), 'utf8');
-  assert.match(recipe, /href="\/recipes"/);
-  assert.doesNotMatch(recipe, /Henry.s kitchen notes/);
+test('cooking tag page links to every migrated recipe', async () => {
+  const tagPage = await readFile(new URL('../dist/tags/cooking.html', import.meta.url), 'utf8');
+  for (const slug of ['mapo-tofu', 'braised-short-rib-shallot-pickle', 'rice-cracker-salad', 'soy-sauce-chicken-over-rice']) {
+    assert.match(tagPage, new RegExp(`href="/notes/${slug}/?"`));
+  }
 });
 
-test('recipe pages contain the supplied ingredients and instructions', async () => {
-  const recipePages = await Promise.all([
+test('note pages render the migrated recipe Markdown', async () => {
+  const notePages = await Promise.all([
     'mapo-tofu',
     'braised-short-rib-shallot-pickle',
     'rice-cracker-salad',
     'soy-sauce-chicken-over-rice',
-  ].map((slug) => readFile(new URL(`../dist/recipes/${slug}.html`, import.meta.url), 'utf8')));
+  ].map((slug) => readFile(new URL(`../dist/notes/${slug}.html`, import.meta.url), 'utf8')));
 
-  assert.match(recipePages[0], /230g/);
-  assert.match(recipePages[0], /corn starch slurry/);
-  assert.match(recipePages[1], /300f for 2-3 hours/);
-  assert.match(recipePages[1], /100 ml white vin/);
-  assert.match(recipePages[2], /200g rice cakes/);
-  assert.match(recipePages[2], /Serve with lettuce \/ perilla leaves/);
-  assert.match(recipePages[3], /1 cup short grain rice/);
-  assert.match(recipePages[3], /Cook rice cooker on standard setting/);
+  assert.match(notePages[0], /230g/);
+  assert.match(notePages[0], /corn starch slurry/);
+  assert.match(notePages[1], /300f for 2-3 hours/);
+  assert.match(notePages[1], /100 ml white vin/);
+  assert.match(notePages[2], /200g rice cakes/);
+  assert.match(notePages[2], /Serve with lettuce \/ perilla leaves/);
+  assert.match(notePages[3], /1 cup short grain rice/);
+  assert.match(notePages[3], /Cook rice cooker on standard setting/);
+  assert.match(notePages[0], /href="\/notes"/);
+  assert.match(notePages[0], /href="\/tags\/cooking"[^>]*>cooking<\/a>/);
+});
+
+test('the retired recipe routes are not generated', async () => {
+  await assert.rejects(access(new URL('../dist/recipes.html', import.meta.url)));
+  await assert.rejects(access(new URL('../dist/recipes/mapo-tofu.html', import.meta.url)));
 });
