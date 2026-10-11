@@ -126,7 +126,7 @@ button {
 
 .site-header {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(5rem, 1fr) auto auto;
   gap: 1.5rem;
   align-items: center;
   min-height: 5rem;
@@ -135,10 +135,11 @@ button {
   background: #000047;
 }
 
-.brand-cluster {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
+.cat-runway {
+  position: relative;
+  min-width: 5rem;
+  height: 3.5rem;
+  overflow: hidden;
 }
 
 .wordmark {
@@ -190,11 +191,15 @@ button {
 }
 
 .site-cats {
-  position: static;
+  position: absolute;
+  bottom: -0.15rem;
+  left: 0;
   display: flex;
   align-items: center;
   gap: 0.05rem;
+  width: max-content;
   pointer-events: none;
+  animation: cat-run 6s linear infinite alternate;
 }
 
 .site-cat {
@@ -246,6 +251,11 @@ button {
 @keyframes cat-float {
   0%, 100% { transform: translateY(0) rotate(-1deg); }
   50% { transform: translateY(-7px) rotate(1deg); }
+}
+
+@keyframes cat-run {
+  from { left: 0; }
+  to { left: calc(100% - 5rem); }
 }
 
 .hero {
