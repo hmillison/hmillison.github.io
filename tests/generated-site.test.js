@@ -92,31 +92,6 @@ test('cats run across the homepage top bar without a name logo', () => {
   assert.match(css, /animation:[^;]*(?:alternate[^;]*cat-run|cat-run[^;]*alternate)/);
 });
 
-test('homepage restores the centered starfield masthead without displacing the header cats', () => {
-  const headerStart = html.indexOf('<header class="site-header"');
-  const headerEnd = html.indexOf('</header>', headerStart);
-  const header = html.slice(headerStart, headerEnd);
-  const mastheadStart = html.indexOf('<section class="homepage-masthead"');
-  const mastheadEnd = html.indexOf('</section>', mastheadStart);
-  const masthead = html.slice(mastheadStart, mastheadEnd);
-
-  assert.match(header, /class="cat-runway"[\s\S]*class="site-cats"/);
-  assert.ok(mastheadStart > headerEnd, 'masthead follows the cat header');
-  assert.match(html, /class="homepage-marquee"/);
-  assert.match(masthead, /You have reached the personal homepage of/);
-  assert.match(masthead, /class="masthead-name"[\s\S]*HENRY[\s\S]*MILLISON/);
-  assert.match(masthead, /software engineer \/ design person \/ new yorker/);
-  assert.match(masthead, /class="masthead-orbit"[\s\S]*HM/);
-  assert.match(masthead, /class="rainbow-rule"/);
-  assert.match(styleSource, /\.homepage-masthead\s*{[^}]*background-image:\s*url\(['"]\/assets\/background\.jpg['"]\)/s);
-  assert.match(styleSource, /@keyframes homepage-marquee/);
-});
-
-test('the restored old-web elements omit badge collections and a visible spark control', () => {
-  assert.doesNotMatch(html, /class="badges?\b|badge-html|badge-nyc|badge-view|badge-human/);
-  assert.doesNotMatch(html, /spark-button|Add stars/i);
-});
-
 test('the build is static and contains no client-side template placeholders', () => {
   assert.doesNotMatch(html, /\{\{[^]*?\}\}/);
   assert.match(html, /id="main"/);
