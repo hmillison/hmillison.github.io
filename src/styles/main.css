@@ -328,28 +328,6 @@ button {
   text-transform: uppercase;
 }
 
-.masthead-name {
-  margin: 0;
-  font-family: var(--display);
-  font-size: clamp(4.5rem, 12vw, 7.25rem);
-  line-height: 0.76;
-  letter-spacing: -0.075em;
-  transform: rotate(-1deg);
-}
-
-.masthead-name span {
-  display: block;
-}
-
-.masthead-name span:first-child {
-  color: var(--cyan);
-}
-
-.masthead-name span:last-child {
-  margin-left: 0.35em;
-  color: var(--yellow);
-}
-
 .masthead-subtitle {
   display: inline-block;
   margin: 1.5rem 0 0.8rem;
@@ -444,15 +422,6 @@ button {
   padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 6vw, 5rem);
   border-bottom: 1px dashed var(--cyan);
   background: var(--panel);
-}
-
-.sign-label {
-  margin: 0 0 0.7rem;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .hero-copy {
@@ -629,17 +598,11 @@ button {
 }
 
 .about-section {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
-}
-
-.about-copy,
-.sign-corner {
-  padding: clamp(2rem, 5vw, 4rem);
+  display: block;
 }
 
 .about-copy {
-  border-right: 1px dashed var(--cyan);
+  padding: clamp(2rem, 5vw, 4rem);
 }
 
 .about-copy > p:not(.section-header p) {
@@ -665,51 +628,6 @@ button {
   font-size: 0.72rem;
 }
 
-.sign-corner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: #15005d;
-  text-align: center;
-}
-
-.street-sign {
-  display: grid;
-  gap: 0.65rem;
-  width: 100%;
-  margin: 0.8rem auto;
-  padding: 0.65rem;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.street-sign-main,
-.street-sign-cross {
-  padding: 0.75rem 0.5rem;
-  border: 4px solid #fff;
-  border-radius: 5px;
-  background: #00613c;
-  box-shadow: 0 0 0 2px #00613c, 5px 5px 0 #000;
-  color: #fff;
-  font: bold clamp(1rem, 3.3vw, 1.65rem) Arial, sans-serif;
-  letter-spacing: 0.06em;
-  line-height: 1;
-}
-
-.street-sign-cross {
-  background: #2452a2;
-  box-shadow: 0 0 0 2px #2452a2, 5px 5px 0 #000;
-  transform: rotate(2deg);
-}
-
-.sign-corner > p:last-child {
-  margin: 0.6rem 0 0;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.7rem;
-}
-
 .collection-section {
   display: grid;
   grid-template-columns: minmax(15rem, 0.75fr) minmax(0, 1.25fr);
@@ -719,6 +637,12 @@ button {
   padding: clamp(2rem, 5vw, 4rem);
   border-right: 1px dashed var(--cyan);
   background: var(--panel-deep);
+}
+
+.collection-section > p {
+  align-self: center;
+  margin: 0;
+  padding: clamp(2rem, 5vw, 4rem);
 }
 
 .collection-list article {
@@ -871,8 +795,6 @@ html[data-theme='plain'] .portrait-star {
   display: none;
 }
 
-html[data-theme='plain'] .masthead-name,
-html[data-theme='plain'] .masthead-name span,
 html[data-theme='plain'] .masthead-kicker {
   color: #171717;
   font-family: Georgia, serif;
@@ -948,8 +870,7 @@ html[data-theme='plain'] .footer-counter .counter {
   color: #176b2c;
 }
 
-html[data-theme='plain'] .work-list article:hover,
-html[data-theme='plain'] .sign-corner {
+html[data-theme='plain'] .work-list article:hover {
   background: #f5f5f5;
 }
 
@@ -1170,10 +1091,6 @@ html[data-theme='plain'] .note-content blockquote {
 }
 
 @media (max-width: 430px) {
-  .masthead-name {
-    font-size: clamp(2.75rem, 14vw, 4rem);
-  }
-
   .masthead-subtitle {
     max-width: 17rem;
     font-size: 0.72rem;

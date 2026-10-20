@@ -8,7 +8,7 @@ interface Props {
 
 const {
   title = 'Henry Millison',
-  description = "Henry Millison's personal website: software, interfaces, New York, cooking, travel notes, and questionable municipal typography.",
+  description = "Henry Millison's personal website: software, interfaces, New York, cooking, and travel notes.",
 } = Astro.props;
 ---
 <!doctype html>
@@ -35,7 +35,7 @@ const {
     <slot />
     <noscript>
       <main class="no-script">
-        <h1>Henry Millison</h1>
+        <h2>Henry Millison</h2>
         <p>This hand-coded homepage needs JavaScript to assemble its interactive details.</p>
         <p><a href="mailto:me@henrymillison.com">Email Henry</a></p>
       </main>

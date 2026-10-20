@@ -111,22 +111,10 @@ const siteContent = {
     navLabel: 'About',
     title: 'Design and development belong in the same room.',
     paragraphs: [
-      'I like the part where design and development overlap: making complicated systems understandable, useful, and maybe even pleasant. With an academic background in Human Computer Interaction and Computer Science, I have a passion for the intersection of design and development.',
+      'I like making complicated systems understandable, useful, and maybe even pleasant. My academic background in Human-Computer Interaction and Computer Science informs how I approach both design and development.',
       'I specialize in React and TypeScript, plus the surrounding front-end ecosystem, but I enjoy working across the full stack to get the job done.',
     ],
     technologies: [],
-  },
-
-  streetSigns: {
-    label: 'Henry’s municipal typography watch',
-    instructions: 'Click the signs to tour several fictional intersections.',
-    aside: 'If your street sign uses Comic Sans or Papyrus, I would genuinely like to see it.',
-    intersections: [
-      ['HENRY ST', 'COMIC SANS WAY'],
-      ['MILLISON AV', 'PAPYRUS PLAZA'],
-      ['JAVASCRIPT BLVD', 'VIEW SOURCE LN'],
-      ['QUEENS', 'THE GREATEST CITY'],
-    ],
   },
 
   notes: {
@@ -141,8 +129,8 @@ const siteContent = {
     id: 'contact',
     navLabel: 'Contact',
     title: 'Sign my guestbook*',
-    copy: 'Want to talk about technology, design, New York, or a badly typeset street sign?',
-    linkLabel: 'Send electronic mail',
+    copy: 'If you want to chat about working together OR anything else (like street signs that use Comic Sans and Papyrus), feel free to',
+    linkLabel: 'reach out!',
     finePrint: '*There is no database. This opens your email client, as nature intended.',
     href: 'mailto:me@henrymillison.com',
   },

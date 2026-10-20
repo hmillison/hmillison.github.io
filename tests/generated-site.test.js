@@ -92,10 +92,18 @@ test('cats run across the homepage top bar without a name logo', () => {
   assert.match(css, /animation:[^;]*(?:alternate[^;]*cat-run|cat-run[^;]*alternate)/);
 });
 
-test('the restored masthead remains readable on narrow mobile screens', () => {
-  assert.match(html, /class="homepage-masthead"/);
-  assert.match(html, /class="masthead-name"[^>]*>[\s\S]*HENRY[\s\S]*MILLISON/);
-  assert.match(styleSource, /@media \(max-width: 430px\)[\s\S]*?\.masthead-name\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*14vw,\s*4rem\)/);
+test('the masthead presents the HM logo without spelling out the name', () => {
+  const mastheadStart = html.indexOf('class="homepage-masthead"');
+  const mastheadEnd = html.indexOf('</section>', mastheadStart);
+  const masthead = html.slice(mastheadStart, mastheadEnd);
+  assert.match(masthead, /You have reached the personal homepage of[\s\S]*class="masthead-orbit"[^>]*aria-label="Henry Millison"[\s\S]*<strong>HM<\/strong>/);
+  assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1);
+  assert.doesNotMatch(masthead, /class="masthead-name"|>HENRY<|>MILLISON</);
+  assert.doesNotMatch(styleSource, /\.masthead-name/);
+});
+
+test('the About section does not include the technology zone label', () => {
+  assert.doesNotMatch(html, /The technology zone/i);
 });
 
 test('the build is static and contains no client-side template placeholders', () => {
@@ -105,8 +113,15 @@ test('the build is static and contains no client-side template placeholders', ()
   assert.match(html, /rel="noopener noreferrer"/);
 });
 
-test('the homepage links to a general Notes section', () => {
+test('the homepage uses the revised biography and original contact sentence without the typography signs', () => {
+  assert.match(html, /My academic background in Human-Computer Interaction and Computer Science informs how I approach both design and development\./);
+  assert.match(html, /If you want to chat about working together OR anything else \(like street signs that use Comic Sans and Papyrus\), feel free to[\s\S]*reach out!/);
+  assert.doesNotMatch(html, /municipal typography watch|questionable municipal typography|class="street-sign"|Change the intersection/i);
+});
+
+test('the homepage links to a padded general Notes section', () => {
   assert.match(html, /<section[^>]*id="notes"[\s\S]*href="\/notes"[^>]*>Notes<\/a>[\s\S]*Cooking, travel, and other things I want to remember[\s\S]*<\/section>/);
+  assert.match(styleSource, /\.collection-section\s*>\s*p\s*{[^}]*padding:\s*clamp\(2rem,\s*5vw,\s*4rem\)/s);
   assert.doesNotMatch(html, /id="recipes"/);
   assert.doesNotMatch(html, />Recipes<\/a>/);
   assert.doesNotMatch(html, /href="\/notes\/mapo-tofu"/);
