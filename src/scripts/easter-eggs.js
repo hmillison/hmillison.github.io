@@ -1,4 +1,3 @@
-import SITE_CONTENT from '../data/site-content.js';
 import {createRepeatedClickTrigger} from './repeated-clicks.js';
 
 const root = document.documentElement;
@@ -6,16 +5,10 @@ const themeToggle = document.querySelector('.theme-toggle');
 const nycTime = document.querySelector('#nyc-time');
 const footerYear = document.querySelector('#footer-year');
 const visitCount = document.querySelector('#visit-count');
-const signButton = document.querySelector('.street-sign');
-const mainSign = document.querySelector('.street-sign-main');
-const crossSign = document.querySelector('.street-sign-cross');
 const sparkLayer = document.querySelector('.spark-layer');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const registerSparkClick = createRepeatedClickTrigger();
 
-const signs = SITE_CONTENT.streetSigns.intersections;
-
-let signIndex = 0;
 
 function setTheme(theme) {
   const nextTheme = theme === 'plain' ? 'plain' : 'weird';
@@ -60,12 +53,6 @@ function updateVisitCount() {
   }
 }
 
-function rotateSign() {
-  signIndex = (signIndex + 1) % signs.length;
-  const [main, cross] = signs[signIndex];
-  mainSign.textContent = main;
-  crossSign.textContent = cross;
-}
 
 function addSpark(x, y) {
   if (!sparkLayer || root.dataset.theme === 'plain') return;
@@ -80,7 +67,6 @@ function addSpark(x, y) {
 }
 
 themeToggle?.addEventListener('click', toggleTheme);
-signButton?.addEventListener('click', rotateSign);
 document.addEventListener('click', event => {
   const target = event.target;
   const isInteractive = target instanceof Element && target.closest('a, button, input, textarea, select, summary');

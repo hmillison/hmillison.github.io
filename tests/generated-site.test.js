@@ -105,8 +105,15 @@ test('the build is static and contains no client-side template placeholders', ()
   assert.match(html, /rel="noopener noreferrer"/);
 });
 
-test('the homepage links to a general Notes section', () => {
+test('the homepage uses the revised biography and original contact sentence without the typography signs', () => {
+  assert.match(html, /My academic background in Human-Computer Interaction and Computer Science informs how I approach both design and development\./);
+  assert.match(html, /If you want to chat about working together OR anything else \(like street signs that use Comic Sans and Papyrus\), feel free to[\s\S]*reach out!/);
+  assert.doesNotMatch(html, /municipal typography watch|questionable municipal typography|class="street-sign"|Change the intersection/i);
+});
+
+test('the homepage links to a padded general Notes section', () => {
   assert.match(html, /<section[^>]*id="notes"[\s\S]*href="\/notes"[^>]*>Notes<\/a>[\s\S]*Cooking, travel, and other things I want to remember[\s\S]*<\/section>/);
+  assert.match(styleSource, /\.collection-section\s*>\s*p\s*{[^}]*padding:\s*clamp\(2rem,\s*5vw,\s*4rem\)/s);
   assert.doesNotMatch(html, /id="recipes"/);
   assert.doesNotMatch(html, />Recipes<\/a>/);
   assert.doesNotMatch(html, /href="\/notes\/mapo-tofu"/);

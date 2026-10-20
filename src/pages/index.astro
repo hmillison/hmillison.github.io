@@ -9,7 +9,6 @@ const navSections = [
   {label: SITE_CONTENT.notes.navLabel, href: `#${SITE_CONTENT.notes.id}`},
   {label: SITE_CONTENT.contact.navLabel, href: `#${SITE_CONTENT.contact.id}`},
 ];
-const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
 ---
 <BaseLayout>
   <AppShell navLinks={navSections}>
@@ -92,15 +91,6 @@ const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
             {SITE_CONTENT.about.technologies.map((item) => <li>{item}</li>)}
           </ul>
         </div>
-        <div class="sign-corner">
-          <p class="sign-label">{SITE_CONTENT.streetSigns.label}</p>
-          <button class="street-sign" type="button" title="Change the intersection">
-            <span class="street-sign-main">{firstIntersection[0]}</span>
-            <span class="street-sign-cross">{firstIntersection[1]}</span>
-          </button>
-          <p>{SITE_CONTENT.streetSigns.instructions}</p>
-          {SITE_CONTENT.streetSigns.aside && <p class="sign-aside">{SITE_CONTENT.streetSigns.aside}</p>}
-        </div>
       </section>
 
       <section class="section collection-section" id={SITE_CONTENT.notes.id} aria-labelledby="notes-title">
@@ -113,7 +103,7 @@ const firstIntersection = SITE_CONTENT.streetSigns.intersections[0];
       <section class="contact-section" id={SITE_CONTENT.contact.id} aria-labelledby="contact-title">
         <div><h2 id="contact-title">{SITE_CONTENT.contact.title}</h2></div>
         <div class="contact-copy">
-          <p>{SITE_CONTENT.contact.copy} <a href={SITE_CONTENT.contact.href}>{SITE_CONTENT.contact.linkLabel}</a>.</p>
+          <p>{SITE_CONTENT.contact.copy} <a href={SITE_CONTENT.contact.href}>{SITE_CONTENT.contact.linkLabel}</a></p>
           {SITE_CONTENT.contact.finePrint && <p class="contact-fineprint">{SITE_CONTENT.contact.finePrint}</p>}
         </div>
       </section>
