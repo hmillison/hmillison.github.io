@@ -328,28 +328,6 @@ button {
   text-transform: uppercase;
 }
 
-.masthead-name {
-  margin: 0;
-  font-family: var(--display);
-  font-size: clamp(4.5rem, 12vw, 7.25rem);
-  line-height: 0.76;
-  letter-spacing: -0.075em;
-  transform: rotate(-1deg);
-}
-
-.masthead-name span {
-  display: block;
-}
-
-.masthead-name span:first-child {
-  color: var(--cyan);
-}
-
-.masthead-name span:last-child {
-  margin-left: 0.35em;
-  color: var(--yellow);
-}
-
 .masthead-subtitle {
   display: inline-block;
   margin: 1.5rem 0 0.8rem;
@@ -817,8 +795,6 @@ html[data-theme='plain'] .portrait-star {
   display: none;
 }
 
-html[data-theme='plain'] .masthead-name,
-html[data-theme='plain'] .masthead-name span,
 html[data-theme='plain'] .masthead-kicker {
   color: #171717;
   font-family: Georgia, serif;
@@ -1115,10 +1091,6 @@ html[data-theme='plain'] .note-content blockquote {
 }
 
 @media (max-width: 430px) {
-  .masthead-name {
-    font-size: clamp(2.75rem, 14vw, 4rem);
-  }
-
   .masthead-subtitle {
     max-width: 17rem;
     font-size: 0.72rem;

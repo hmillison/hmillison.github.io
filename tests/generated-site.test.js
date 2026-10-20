@@ -92,10 +92,18 @@ test('cats run across the homepage top bar without a name logo', () => {
   assert.match(css, /animation:[^;]*(?:alternate[^;]*cat-run|cat-run[^;]*alternate)/);
 });
 
-test('the restored masthead remains readable on narrow mobile screens', () => {
-  assert.match(html, /class="homepage-masthead"/);
-  assert.match(html, /class="masthead-name"[^>]*>[\s\S]*HENRY[\s\S]*MILLISON/);
-  assert.match(styleSource, /@media \(max-width: 430px\)[\s\S]*?\.masthead-name\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*14vw,\s*4rem\)/);
+test('the masthead presents the HM logo without spelling out the name', () => {
+  const mastheadStart = html.indexOf('class="homepage-masthead"');
+  const mastheadEnd = html.indexOf('</section>', mastheadStart);
+  const masthead = html.slice(mastheadStart, mastheadEnd);
+  assert.match(masthead, /You have reached the personal homepage of[\s\S]*class="masthead-orbit"[^>]*aria-label="Henry Millison"[\s\S]*<strong>HM<\/strong>/);
+  assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1);
+  assert.doesNotMatch(masthead, /class="masthead-name"|>HENRY<|>MILLISON</);
+  assert.doesNotMatch(styleSource, /\.masthead-name/);
+});
+
+test('the About section does not include the technology zone label', () => {
+  assert.doesNotMatch(html, /The technology zone/i);
 });
 
 test('the build is static and contains no client-side template placeholders', () => {
