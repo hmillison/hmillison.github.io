@@ -30,7 +30,7 @@ const siteContent = {
   work: {
     id: 'work',
     navLabel: 'Work',
-    title: 'Things I built for money',
+    title: 'Things I have built for money',
     items: [
       {
         title: 'Citadel Securities',

@@ -92,6 +92,12 @@ test('cats run across the homepage top bar without a name logo', () => {
   assert.match(css, /animation:[^;]*(?:alternate[^;]*cat-run|cat-run[^;]*alternate)/);
 });
 
+test('the restored masthead remains readable on narrow mobile screens', () => {
+  assert.match(html, /class="homepage-masthead"/);
+  assert.match(html, /class="masthead-name"[^>]*>[\s\S]*HENRY[\s\S]*MILLISON/);
+  assert.match(styleSource, /@media \(max-width: 430px\)[\s\S]*?\.masthead-name\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*14vw,\s*4rem\)/);
+});
+
 test('the build is static and contains no client-side template placeholders', () => {
   assert.doesNotMatch(html, /\{\{[^]*?\}\}/);
   assert.match(html, /id="main"/);
