@@ -33,7 +33,7 @@ const siteContent = {
     title: 'Things I have built for money',
     items: [
       {
-        title: 'Citadel Securities',
+        title: 'Citadel Securities Semi-Systematic Trading',
         period: 'Present',
         summary: 'Building a next generation global systematic trading platform.',
       },
