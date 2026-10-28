@@ -14,10 +14,11 @@ test('build emits the complete work history as static HTML', () => {
   const work = html.slice(workStart, workEnd);
   assert.equal((work.match(/<article>/g) || []).length, 11);
   assert.equal((html.match(/Citadel Securities/g) || []).length, 2);
+  assert.match(html, /Citadel Securities Semi-Systematic Trading/);
   assert.match(html, /July 2023/);
   assert.match(html, /July 2025/);
   assert.match(html, /Building a next generation global systematic trading platform/);
-  assert.ok(html.indexOf('Citadel Securities</h3>') < html.indexOf('Citadel Securities Research Platform'));
+  assert.ok(html.indexOf('Citadel Securities Semi-Systematic Trading') < html.indexOf('Citadel Securities Research Platform'));
   assert.doesNotMatch(html, /Covered by NDA/i);
   assert.doesNotMatch(html, /whoami/);
   assert.match(html, /href="https:\/\/newsroom\.reportablenews\.com\/pr\/reportable-launches-reportabot-an-ai-powered-tool-to-generate-news-releases-in-under-60-seconds"/);
@@ -100,6 +101,11 @@ test('the masthead presents the HM logo without spelling out the name', () => {
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1);
   assert.doesNotMatch(masthead, /class="masthead-name"|>HENRY<|>MILLISON</);
   assert.doesNotMatch(styleSource, /\.masthead-name/);
+});
+
+test('the masthead subtitle omits the design person label', () => {
+  assert.match(html, /software engineer \/ new yorker/);
+  assert.doesNotMatch(html, /design person/);
 });
 
 test('the About section does not include the technology zone label', () => {
